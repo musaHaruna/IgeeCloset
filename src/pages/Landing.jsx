@@ -1,6 +1,6 @@
 import React from 'react'
 import { Footer, Navbar } from '../components/global'
-import Home from './Home'
+import Home from './home'
 import { Outlet } from 'react-router-dom'
 
 const Landing = () => {

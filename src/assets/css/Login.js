@@ -1,0 +1,100 @@
+import styled from 'styled-components'
+
+const Wrapper = styled.article`
+  h3 {
+    font-size: 22px;
+    text-align: center;
+  }
+
+  label {
+    font-size: 14px;
+    color: #7a828a;
+  }
+
+  input {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 6px;
+    background-color: #edf2f7;
+    border: none;
+    color: #7a828a;
+    margin-top: 0.3rem;
+  }
+
+  input:focus {
+    outline: none;
+  }
+
+  form div {
+    margin: 1rem 0;
+  }
+
+  form p {
+    font-size: 12px;
+    color: #7a828a;
+  }
+
+  .btn {
+    display: block;
+    padding: 0.5rem 0;
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+  }
+
+  .center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .icon {
+    display: block;
+  }
+
+  .close {
+    font-size: 22px;
+    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    cursor: pointer;
+  }
+
+  .btn.signin {
+    color: #fff;
+    background-color: #56ac48;
+  }
+
+  .btn.google {
+    background-color: #fff;
+    color: #344054;
+    border: 1px solid #d0d5dd;
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+  }
+  .or {
+    margin: 1.5rem 0;
+    text-align: center;
+  }
+
+  .btn.fb {
+    background-color: #1877f2;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+  }
+
+  .social-icon {
+    display: block;
+    font-size: 22px;
+  }
+`
+
+export default Wrapper

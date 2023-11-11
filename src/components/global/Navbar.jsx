@@ -1,17 +1,31 @@
 import React from 'react'
 import { NavLink, Link } from 'react-router-dom'
-import { CiUser } from 'react-icons/ci'
 import Wrapper from '../../assets/css/Navbar'
+import { Logo } from './index'
+import { useDispatch, useSelector } from 'react-redux'
+import { openSignUpModal, openLoginModal } from '../../features/user/userSlice'
+import { Login, SignUp } from '../modals'
 
 const Navbar = () => {
+  const dispatch = useDispatch()
+  const { isSignUpModalOpen, isLoginModalOpen, user } = useSelector(
+    (state) => state.user
+  )
+
+  console.log(user)
+
+  console.log(isSignUpModalOpen)
+
+  const handleOpenModal = () => {
+    dispatch(openSignUpModal())
+  }
+  const handleOpenMLoginodal = () => {
+    dispatch(openLoginModal())
+  }
+
   return (
     <Wrapper>
-      <Link to={'/'}>
-        <h3 className='logo'>
-          <span className='text-green'>i</span>Gee
-          <span className='text-green'> Closet</span>
-        </h3>
-      </Link>
+      <Logo />
       <ul>
         <li>
           <NavLink
@@ -44,8 +58,13 @@ const Navbar = () => {
             FAQ
           </NavLink>
         </li>
-        <li className='cta-green-outline-flat'>Login/Signup</li>
+        <h3>{user.user.username}</h3>
+        <li onClick={handleOpenModal} className='cta-green-outline-flat'>
+          Login/Signup
+        </li>
       </ul>
+      {isSignUpModalOpen && <SignUp />}
+      {isLoginModalOpen && <Login />}
     </Wrapper>
   )
 }
