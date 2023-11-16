@@ -1,7 +1,7 @@
 import React from 'react'
 import Wrapper from '../assets/css/Home'
 import { Link } from 'react-router-dom'
-import { AdLady, HeroImg1 } from '../assets/images'
+import { AdLady, HeroImg1, Story } from '../assets/images'
 import { howItWorks, closetCard } from '../utils/data'
 import { ClosetCard, GetStartedCard } from '../components/website'
 import { PiArrowUpRight } from 'react-icons/pi'
@@ -83,6 +83,30 @@ const Home = () => {
               ))}
             </section>
           </section>
+        </section>
+
+        <section className='container'>
+          <h2 className='heading'>
+            Our <span className='text-green'>Story</span>
+          </h2>
+          <div className='our-story'>
+            <div>
+              <img src={Story} alt='' />
+            </div>
+            <div className='our-story-text-container'>
+              <p>
+                “ iGee Closet stems from my experience monetizing my closet and
+                learning about fast fashion and its harmful effects. I believe
+                that we can all be a part of the solution by being more
+                intentional about our lifestyle choices, including our fashion
+                choices.”
+              </p>
+              <p className='btn-our-story'>
+                <a className='white' href='#'> Join us </a> on this journey towards a more
+                intentional lifestyle.
+              </p>
+            </div>
+          </div>
         </section>
       </article>
     </Wrapper>

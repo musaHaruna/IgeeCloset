@@ -258,6 +258,47 @@ const Wrapper = styled.article`
     font-size: 14px;
     cursor: pointer;
   }
+
+  .our-story {
+    position: relative;
+    overflow: hidden;
+    border-radius: 25px;
+    width: 90%;
+    margin: 1rem auto;
+  }
+
+  .our-story-text-container {
+    position: absolute;
+    top: 30rem;
+    height: 200px;
+    border-radius: 32px;
+    background: rgba(23, 25, 28, 0.7);
+  }
+
+  .our-story-text-container p {
+    margin-top: 2rem;
+    color: var(--clr-white);
+    text-align: center;
+    padding: 0 2rem;
+  }
+
+  .btn-our-story {
+    background-color: var(--clr-green-2);
+    color: var(--clr-white);
+    padding: 2rem;
+    border-radius: 25px;
+    width: 70%;
+    height: 35px;
+    margin: 1rem auto;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+
+  .btn-our-story .white {
+    color: var(--clr-white);
+  }
 `
 
 export default Wrapper
