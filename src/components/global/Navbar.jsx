@@ -1,10 +1,11 @@
 import React from 'react'
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import Wrapper from '../../assets/css/Navbar'
 import { Logo } from './index'
 import { useDispatch, useSelector } from 'react-redux'
 import { openSignUpModal, openLoginModal } from '../../features/user/userSlice'
 import { Login, SignUp } from '../modals'
+import { BsSearch } from 'react-icons/bs'
 
 const Navbar = () => {
   const dispatch = useDispatch()
@@ -12,9 +13,7 @@ const Navbar = () => {
     (state) => state.user
   )
 
-  console.log(user)
-
-  console.log(isSignUpModalOpen)
+  const username = user?.user.username.charAt(0).toUpperCase()
 
   const handleOpenModal = () => {
     dispatch(openSignUpModal())
@@ -23,9 +22,18 @@ const Navbar = () => {
     dispatch(openLoginModal())
   }
 
+  console.log(isLoginModalOpen)
+
   return (
     <Wrapper>
-      <Logo />
+      <div className='logo'>
+        <Logo />
+      </div>
+
+      <div className='nav-search'>
+        <BsSearch className='icon text-green' />
+        <input type='text' placeholder='Find the help you need...' />
+      </div>
       <ul>
         <li>
           <NavLink
@@ -58,10 +66,13 @@ const Navbar = () => {
             FAQ
           </NavLink>
         </li>
-        <h3>{user.user.username}</h3>
-        <li onClick={handleOpenModal} className='cta-green-outline-flat'>
-          Login/Signup
-        </li>
+        {user ? (
+          <h2 className='username'>{username}</h2>
+        ) : (
+          <li onClick={handleOpenModal} className='cta-green-outline-flat'>
+            Login/Signup
+          </li>
+        )}
       </ul>
       {isSignUpModalOpen && <SignUp />}
       {isLoginModalOpen && <Login />}

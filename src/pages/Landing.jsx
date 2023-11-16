@@ -7,7 +7,6 @@ const Landing = () => {
   return (
     <main className='container'>
       <Navbar />
-      <Home />
       <Outlet />
       <Footer />
     </main>

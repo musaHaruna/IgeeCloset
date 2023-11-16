@@ -8,9 +8,10 @@ import { Logo } from '../global'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { useUserLogin } from '../../utils/reactQueryCustomHook'
+import { useUserLogin } from '../../utils/usersApi'
 import { useDispatch, useSelector } from 'react-redux'
 import { closeLoginModal } from '../../features/user/userSlice'
+import { ForgetPassword } from './index'
 
 const Login = () => {
   const schema = yup.object().shape({
@@ -23,7 +24,19 @@ const Login = () => {
   const handleCloseModal = () => {
     dispatch(closeLoginModal())
   }
-  console.log(user)
+
+  const [openForgetPassword, setOpenForgetPassword] = useState(false)
+
+  const handleOpenForgetPassword = () => {
+    setOpenForgetPassword(true)
+  }
+
+  const handleCloseForgetPassword = () => {
+    setOpenForgetPassword(false)
+  }
+
+  console.log(openForgetPassword)
+
   const {
     register,
     handleSubmit,
@@ -79,8 +92,11 @@ const Login = () => {
           <button className='btn signin' type='submit'>
             Sign In
           </button>
+          <p onClick={handleOpenForgetPassword} className='forget-pword'>
+            Forget <span className='text-green'>Password?</span>
+          </p>
         </form>
-        <p className='or'>or</p>
+        <p className='or login-or'>or</p>
         <button className='btn google '>
           <FcGoogle className='social-icon' />
           Sign up with Google
@@ -89,7 +105,14 @@ const Login = () => {
           <BsFacebook className='social-icon' />
           Sign up with Facebook
         </button>
+        <p className='forget-pword text-green'>Sign Up with Email</p>
       </Wrapper>
+      {openForgetPassword && (
+        <ForgetPassword
+          openForgetModal={openForgetPassword}
+          closeForgetModal={handleCloseForgetPassword}
+        />
+      )}
     </LoginWrapper>
   )
 }

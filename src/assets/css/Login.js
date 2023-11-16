@@ -95,6 +95,34 @@ const Wrapper = styled.article`
     display: block;
     font-size: 22px;
   }
+
+  .signup {
+    padding: 1rem;
+  }
+
+  .login-already {
+    text-align: center;
+    font-size: 14px;
+  }
+
+  .login-already span {
+    cursor: pointer;
+  }
+
+  .forget-pword {
+    font-size: 12px;
+    text-align: center;
+    margin-top: 0.5rem;
+    cursor: pointer;
+  }
+
+  .or.login-or {
+    margin: 0.2rem 0;
+  }
+
+  .forget-pword.text-green {
+    margin-top: 0.5rem;
+  }
 `
 
 export default Wrapper

@@ -1,15 +1,11 @@
-import { useSelector } from 'react-redux'
-
-const LoginWrapper = ({ children }) => {
-  const { isLoginModalOpen } = useSelector((state) => state.user)
+const ForgetWrapper = ({ openModal, children }) => {
   const modalStyle = {
-    display: isLoginModalOpen ? 'block' : 'none',
+    display: openModal ? 'block' : 'none',
     position: 'fixed',
     top: 0,
     left: 0,
     width: '100%',
     height: '100%',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   }
 
   const contentStyle = {
@@ -30,4 +26,4 @@ const LoginWrapper = ({ children }) => {
   )
 }
 
-export default LoginWrapper
+export default ForgetWrapper

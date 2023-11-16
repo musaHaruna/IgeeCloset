@@ -4,6 +4,37 @@ import customFetch from './axios'
 import { addUserToLocalStorage } from './localStorage'
 import { useDispatch } from 'react-redux'
 
+export const useRegisterUser = () => {
+  const queryClient = useQueryClient()
+  const {
+    data,
+    mutate: registerUser,
+    isLoading,
+  } = useMutation({
+    mutationFn: ({ username, email, name, phone, password }) =>
+      customFetch.post(
+        `customer/register?username=${username}&email=${email}&name=${name}&phone=${phone}&password=${password}`,
+        {},
+        {
+          params: {
+            username,
+            email,
+            name,
+            phone,
+            password,
+          },
+        }
+      ),
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ['registerUser'] })
+      console.log(data.data)
+    },
+    onError: (error) => {
+      console.log(error.response.data.message)
+    },
+  })
+  return { data, registerUser, isLoading }
+}
 export const useUserLogin = () => {
   const dispatch = useDispatch()
   const queryClient = useQueryClient()

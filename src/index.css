@@ -138,3 +138,25 @@ input {
   display: block;
   font-size: 24px;
 }
+/* Track */
+::-webkit-scrollbar-track {
+  background-color: rgba(182, 180, 180, 0.6);
+  border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background-color: rgba(182, 180, 180, 0.6);
+  border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--clr-green);
+  border-radius: 5px;
+}

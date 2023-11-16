@@ -14,11 +14,12 @@ const SignUpWrapper = ({ children }) => {
 
   const contentStyle = {
     backgroundColor: 'white',
-    width: '50%',
+    width: '35%',
     margin: 'auto',
     marginTop: '3%',
     height: '500px',
-    overflowY: 'hidden',
+    overflowY: 'scroll',
+    padding: "20px",
     borderRadius: '5px',
   }
 
