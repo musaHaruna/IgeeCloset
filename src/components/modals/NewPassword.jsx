@@ -59,12 +59,20 @@ const NewPassword = ({
         <div className='close'>
           <AiOutlineClose onClick={closeNewPassword} className='icon ' />
         </div>
-        <div className='center'>
+        <div className='new-pword-center center'>
           <Logo />
         </div>
-        <h2>New Passowrd</h2>
+        <h3 className='text-align'>Create New Passowrd</h3>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <button onClick={openSuccess} className='btn signin' type='submit'>
+          <div>
+            <label>New Password</label>
+            <input type='text' />
+          </div>
+          <div>
+            <label>Confirm Password</label>
+            <input type='text' />
+          </div>
+          <button className='btn signin' onClick={openSuccess}>
             Submit
           </button>
         </form>

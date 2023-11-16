@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import Wrapper from '../../assets/css/Login'
-import { AiOutlineClose } from 'react-icons/ai'
+import OtpInput from 'react-otp-input'
+import { IoChevronBackOutline } from 'react-icons/io5'
+
 import { Logo } from '../global'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -52,25 +54,28 @@ const OTP = ({ openModal, closeModal, closeForgetModal }) => {
       },
     })
   }
+
+  const [otp, setOtp] = useState('')
+
+  const handleChange = (code) => setCode(code)
   return (
     <OtpWrapper modal={openModal}>
       <Wrapper>
         <div className='close'>
-          <AiOutlineClose onClick={closeModal} className='icon ' />
+          <IoChevronBackOutline onClick={closeModal} className='icon back' />
         </div>
         <div className='center'>
           <Logo />
         </div>
-        <h2>OTP</h2>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <button
-            onClick={openNewPasswordModal}
-            className='btn signin'
-            type='submit'
-          >
-            Submit
-          </button>
+
+        <form className='otp-form' onSubmit={handleSubmit(onSubmit)}>
+          <h3>Enter the code</h3>
+          <p>A code was sent to f*******@gmail.com</p>
+          <input type='text' />
+          <p className='left'>resend code in </p>
+          <p className='resend' onClick={openNewPasswordModal}>Resend OTP </p>
         </form>
+
         {newPassword && (
           <NewPassword
             openNewPassword={newPassword}

@@ -10,6 +10,7 @@ const SignUpWrapper = ({ children }) => {
     width: '100%',
     height: '100%',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    zIndex: 999,
   }
 
   const contentStyle = {
@@ -19,7 +20,7 @@ const SignUpWrapper = ({ children }) => {
     marginTop: '3%',
     height: '500px',
     overflowY: 'scroll',
-    padding: "20px",
+    padding: '20px',
     borderRadius: '5px',
   }
 

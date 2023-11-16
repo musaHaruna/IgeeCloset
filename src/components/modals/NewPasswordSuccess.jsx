@@ -37,16 +37,14 @@ const NewPasswordSuccess = ({ openSuccess, confirmLogin }) => {
   return (
     <NewPasswordSuccessWrapper succesModal={openSuccess}>
       <Wrapper>
-        <div className='close'>
-          <AiOutlineClose className='icon ' />
-        </div>
-        <div className='center'>
+        <div className='new-pword-center center'>
           <Logo />
         </div>
-        <h2>New Passowrd Success</h2>
+        <h3 className='success-heading'>New Password Created Successfully</h3>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <button onClick={confirmLogin} className='btn signin' type='submit'>
-            Submit
+          <p className='text-p'>Please login with your new account credentials </p>
+          <button onClick={confirmLogin} className='btn signin login' type='submit'>
+            Login
           </button>
         </form>
       </Wrapper>

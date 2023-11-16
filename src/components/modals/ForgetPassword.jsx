@@ -9,6 +9,7 @@ import { useUserLogin } from '../../utils/usersApi'
 import { useDispatch, useSelector } from 'react-redux'
 import { closeLoginModal } from '../../features/user/userSlice'
 import ForgetWrapper from './wrappers/ForgetWrapper'
+import { ForgetPword } from '../../assets/images'
 import OTP from './OTP'
 
 const ForgetPassword = ({ openForgetModal, closeForgetModal }) => {
@@ -58,14 +59,19 @@ const ForgetPassword = ({ openForgetModal, closeForgetModal }) => {
         <div className='close'>
           <AiOutlineClose onClick={closeForgetModal} className='icon ' />
         </div>
-        <div className='center'>
-          <Logo />
+
+        <div className='forget-img'>
+          <img src={ForgetPword} alt='' />
         </div>
-        <h3 cla>Welcome Back!</h3>
+        <h3 className='forget-head'>Forget Password</h3>
+        <p className='forget-p'>
+          No need to stress! If it happens, just type in the address linked to
+          your account.
+        </p>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div>
-            <label>
-              Username/E-mail Address
+            <label className='e-mail'>
+              E-mail Address
               <input
                 type='text'
                 {...register('username')}
@@ -75,7 +81,7 @@ const ForgetPassword = ({ openForgetModal, closeForgetModal }) => {
             </label>
           </div>
 
-          <button onClick={openOtpModal} className='btn signin' type='submit'>
+          <button onClick={openOtpModal} className='btn signin forget' type='submit'>
             Submit
           </button>
         </form>

@@ -65,6 +65,7 @@ const Wrapper = styled.article`
   .btn.signin {
     color: #fff;
     background-color: #56ac48;
+    cursor: pointer;
   }
 
   .btn.google {
@@ -123,6 +124,79 @@ const Wrapper = styled.article`
   .forget-pword.text-green {
     margin-top: 0.5rem;
   }
+
+  .forget-img {
+    width: 120px;
+    margin-top: 2rem;
+    margin: 0 auto;
+  }
+
+  .forget-head {
+    font-size: 18px;
+    margin: 1rem 0;
+  }
+
+  .forget-p {
+    font-size: 14px;
+    color: #6e6e6e;
+    text-align: center;
+  }
+
+  .e-mail {
+    color: #425466;
+  }
+
+  .btn.signin.forget {
+    margin: 2rem auto;
+    cursor: pointer;
+  }
+
+  .icon.back {
+    margin-right: auto;
+  }
+
+  .otp-form {
+    margin: 8rem 0;
+  }
+  .otp-form p {
+    text-align: center;
+    margin: 0.5rem 0;
+  }
+
+  .otp-form .left {
+    text-align: left;
+  }
+
+  .otp-form .resend {
+    margin: 4rem 0;
+    cursor: pointer;
+  }
+
+  .new-pword-center {
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+  }
+
+  .text-align {
+    text-align: left;
+    font-size: 20px;
+    color: #272727;
+  }
+
+  .success-heading {
+    font-size: 20px;
+    font-weight: 500;
+    color: #272727;
+  }
+
+  .text-p {
+    text-align: center;
+    margin: 1rem 0;
+  }
+  .btn.signin.login {
+    margin-top: 2rem;
+  }
+  margin: 1rem 0;
 `
 
 export default Wrapper
