@@ -1,3 +1,5 @@
+import { ClosetImg } from '../assets/images'
+
 const howItWorks = [
   {
     id: 1,
@@ -32,5 +34,23 @@ const howItWorks = [
     text: `Click  on  “Sell” and add up to 4 photos, then give a description& set your price`,
   },
 ]
+const closetCard = [
+  {
+    id: 1,
+    coverImg: <img src={ClosetImg} alt='' />,
+    name: "Maryann's Closet",
+    social: '@Maryann',
+    itemSize: '16 items listed',
+    profileImg: <img src={ClosetImg} alt='' />,
+  },
+  {
+    id: 2,
+    coverImg: <img src={ClosetImg} alt='' />,
+    name: "Maryann's Closet",
+    social: '@Maryann',
+    itemSize: '16 items listed',
+    profileImg: <img src={ClosetImg} alt='' />,
+  },
+]
 
-export default howItWorks
+export { howItWorks, closetCard }

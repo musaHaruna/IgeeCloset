@@ -1,2 +1,3 @@
 import GetStartedCard from './GetStartedCard'
-export { GetStartedCard }
+import ClosetCard from './ClosetCard'
+export { GetStartedCard, ClosetCard }

@@ -152,6 +152,112 @@ const Wrapper = styled.article`
   .ads .content .text p .text-green {
     text-decoration: underline;
   }
+
+  .explore-bg {
+    background-color: rgba(245, 250, 244, 0.55);
+  }
+
+  .explore {
+    margin: 4rem auto;
+  }
+  .explore h2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 8rem;
+  }
+
+  .arrow {
+    width: 80px;
+    height: 80px;
+    color: var(--clr-white);
+    background-color: var(--clr-green-2);
+    border-radius: 50%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .explore .text-green {
+    font-size: 20px;
+    text-align: left;
+    font-weight: 500;
+    margin: 1rem 0;
+  }
+
+  .closet-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    width: 95%;
+    margin: 1rem auto;
+    gap: 1.5rem;
+  }
+
+  .closet-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    justify-self: center;
+    cursor: pointer;
+  }
+
+  .profile-img {
+    width: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--clr-white);
+  }
+
+  .closet-card-info {
+    position: absolute;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.7);
+    top: 28.5rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .text-white {
+    color: #f5faf4;
+    font-weight: 500;
+    font-size: 18px;
+    text-align: left;
+  }
+
+  .closet-card-info .info {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .closet-card-info .info p {
+    margin: 0.2rem 0;
+    line-height: 1.3;
+  }
+
+  .social.text-green {
+    font-size: 14px;
+  }
+
+  .items.text-white {
+    font-size: 15px;
+  }
+
+  .follow-btn {
+    display: block;
+    border-radius: 8px;
+    border: 1px solid #f5faf4;
+    background: #f5faf4;
+    padding: 0.5rem 1rem;
+    font-size: 14px;
+    cursor: pointer;
+  }
 `
 
 export default Wrapper

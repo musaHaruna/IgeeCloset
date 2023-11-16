@@ -2,8 +2,9 @@ import React from 'react'
 import Wrapper from '../assets/css/Home'
 import { Link } from 'react-router-dom'
 import { AdLady, HeroImg1 } from '../assets/images'
-import howItWorks from '../utils/data'
-import { GetStartedCard } from '../components/website'
+import { howItWorks, closetCard } from '../utils/data'
+import { ClosetCard, GetStartedCard } from '../components/website'
+import { PiArrowUpRight } from 'react-icons/pi'
 
 const Home = () => {
   return (
@@ -49,9 +50,8 @@ const Home = () => {
               <h4>No Time to Declutter? No problem</h4>
               <p>
                 <a className='text-green' href='#'>
-                  {' '}
                   Click here
-                </a>{' '}
+                </a>
                 and a member of our
               </p>
               <p>team will be in touch to help out.</p>
@@ -65,8 +65,24 @@ const Home = () => {
           </div>
         </section>
 
-        <section>
-          <section className='container'></section>
+        <section className='explore-bg'>
+          <section className='container explore '>
+            <h2 className='heading'>
+              Explore Our Closets{' '}
+              <span className='arrow'>
+                <PiArrowUpRight />
+              </span>
+            </h2>
+            <p className='text-green'>
+              Find unique items that fit your current style
+            </p>
+
+            <section className='closet-cards'>
+              {closetCard.map((item, index) => (
+                <ClosetCard key={index} item={item} />
+              ))}
+            </section>
+          </section>
         </section>
       </article>
     </Wrapper>
