@@ -7,6 +7,7 @@ import {
   FAQ,
   Home,
   ProtectedRoute,
+  SingleCloset,
 } from './pages/Index'
 import {
   BankInfo,
@@ -26,6 +27,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path='explore' element={<Explore />} />
           <Route path='closet' element={<Closet />} />
+          <Route path='closet/:id' element={<SingleCloset />} />
           <Route path='faq' element={<FAQ />} />
           <Route path='*' element={<Error />} />
         </Route>

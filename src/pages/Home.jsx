@@ -85,7 +85,9 @@ const Home = () => {
 
             <section className='closet-cards'>
               {closetCard.map((item, index) => (
-                <ClosetCard key={index} item={item} />
+                <Link to={`/closet/${item.id}`}>
+                  <ClosetCard key={index} item={item} />
+                </Link>
               ))}
             </section>
           </section>
