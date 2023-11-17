@@ -53,4 +53,28 @@ const closetCard = [
   },
 ]
 
-export { howItWorks, closetCard }
+const faqData = [
+  {
+    question: 'What is iGee Closet?',
+    answer: 'React is a JavaScript library for building user interfaces.',
+  },
+  {
+    question: 'How can I sell my pre-loved items?',
+    answer: 'You can install React using npm by running: npm install react.',
+  },
+  {
+    question: 'How does iGee Closet provide Safety?',
+    answer: 'You can install React using npm by running: npm install react.',
+  },
+  {
+    question: 'What does it cost?',
+    answer: 'You can install React using npm by running: npm install react.',
+  },
+  {
+    question: 'How does delivery work',
+    answer: 'You can install React using npm by running: npm install react.',
+  },
+  // Add more FAQ items as needed
+]
+
+export { howItWorks, closetCard, faqData }

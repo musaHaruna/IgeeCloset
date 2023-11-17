@@ -4,5 +4,6 @@ import ForgetPword from '../images/Home/forget-pword.png'
 import AdLady from '../images/Home/ad-lady.png'
 import ClosetImg from '../images/Home/closet-img.png'
 import Story from '../images/Home/story.png'
+import JoinUs from '../images/Home/join-us.png'
 
-export { HeroImg1, profile, ForgetPword, AdLady, ClosetImg, Story }
+export { HeroImg1, profile, ForgetPword, AdLady, ClosetImg, Story, JoinUs }

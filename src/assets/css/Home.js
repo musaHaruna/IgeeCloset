@@ -299,6 +299,104 @@ const Wrapper = styled.article`
   .btn-our-story .white {
     color: var(--clr-white);
   }
+
+  .faq-item {
+    cursor: pointer;
+  }
+
+  .faq-bg {
+    background: linear-gradient(
+        149deg,
+        rgba(86, 172, 72, 0.06) 41.69%,
+        rgba(87, 164, 96, 0.06) 68.38%,
+        rgba(93, 112, 249, 0.06) 169.51%
+      ),
+      #fff;
+    padding: 3rem 0;
+  }
+
+  .faq-heading {
+    border-radius: 16px;
+    margin: 0.5rem 0;
+    padding: 1rem 0.5rem;
+    border-bottom: 1px solid #a3a3a3;
+    background: #fff;
+    color: #1e1e1e;
+  }
+
+  .faq-p {
+    text-align: left;
+    background-color: #fff;
+    padding: 0.5rem;
+  }
+
+  .join-bg {
+    background: linear-gradient(
+        149deg,
+        rgba(86, 172, 72, 0.06) 41.69%,
+        rgba(87, 164, 96, 0.06) 68.38%,
+        rgba(93, 112, 249, 0.06) 169.51%
+      ),
+      #fff;
+  }
+
+  .join {
+    padding: 3rem 0;
+  }
+
+  .join-us {
+    position: relative;
+    overflow: hidden;
+    border-radius: 25px;
+    width: 90%;
+    margin: 1rem auto;
+  }
+
+  .join-us-text-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 32px;
+    background: rgba(23, 25, 28, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .join-us-text-container h2 {
+    font-size: 38px;
+    text-align: center;
+    line-height: 1.3;
+    font-weight: 500;
+  }
+
+  .cta-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+    gap: 1rem;
+  }
+
+  .cta-btn button {
+    display: block;
+    width: 20%;
+    padding: 0.8rem;
+    border: none;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .cta-btn .buy {
+    background-color: var(--clr-green);
+    color: white;
+  }
+  .cta-btn .sell {
+    background-color: var(--clr-white);
+    color: var(--clr-green);
+  }
 `
 
 export default Wrapper
