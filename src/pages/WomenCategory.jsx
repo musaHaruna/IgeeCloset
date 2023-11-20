@@ -1,9 +1,9 @@
 import { ClosetHero2, MenCate, WomenCate } from '../assets/images'
-import Wrapper from '../assets/css/Explore'
+import Wrapper from '../assets/css/WomenCategory'
 import { singleClosetItem } from '../utils/data'
 import { SingleClosetItem } from '../components/website'
 
-const Explore = () => {
+const WomenCategory = () => {
   return (
     <Wrapper>
       <article className='container'>
@@ -30,11 +30,9 @@ const Explore = () => {
         </section>
 
         <section className='category-head'>
-          <h2>Categories</h2>
-          <p>
-            The vacuum cleaner can be divided into vertical, horizontal <br />
-            and portable
-          </p>
+          <p>Explore</p>
+          <p>Category</p>
+          <p>Women</p>
         </section>
 
         <section className='categories'>
@@ -62,4 +60,4 @@ const Explore = () => {
   )
 }
 
-export default Explore
+export default WomenCategory

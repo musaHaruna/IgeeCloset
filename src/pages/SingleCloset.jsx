@@ -111,10 +111,11 @@ const SingleCloset = () => {
           </select>
         </div>
       </section>
-
-      {singleClosetItem.map((item, index) => (
-        <SingleClosetItem key={index} item={item} />
-      ))}
+      <section className='closet-cards'>
+        {singleClosetItem.map((item, index) => (
+          <SingleClosetItem key={index} item={item} />
+        ))}
+      </section>
     </Wrapper>
   )
 }

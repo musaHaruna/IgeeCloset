@@ -161,6 +161,13 @@ const Wrapper = styled.main`
     align-items: center;
     gap: 1rem;
   }
+
+  .closet-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
 `
 
 export default Wrapper

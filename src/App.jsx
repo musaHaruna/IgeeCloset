@@ -8,6 +8,7 @@ import {
   Home,
   ProtectedRoute,
   SingleCloset,
+  WomenCategory,
 } from './pages/Index'
 import {
   BankInfo,
@@ -28,6 +29,7 @@ function App() {
           <Route path='explore' element={<Explore />} />
           <Route path='closet' element={<Closet />} />
           <Route path='closet/:id' element={<SingleCloset />} />
+          <Route path='closet/:women' element={<WomenCategory />} />
           <Route path='faq' element={<FAQ />} />
           <Route path='*' element={<Error />} />
         </Route>

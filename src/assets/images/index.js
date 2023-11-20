@@ -7,6 +7,10 @@ import Story from '../images/Home/story.png'
 import JoinUs from '../images/Home/join-us.png'
 import ClosetBanner from '../images/Home/closet-banner.png'
 import ClosetItem from '../images/Home/closet-item.png'
+import ClosetHero from '../images/Home/closet-hero.png'
+import ClosetHero2 from '../images/Home/closet-hero-2.png'
+import MenCate from '../images/Home/men-cate.png'
+import WomenCate from '../images/Home/women-cate.png'
 
 export {
   HeroImg1,
@@ -18,4 +22,8 @@ export {
   JoinUs,
   ClosetBanner,
   ClosetItem,
+  ClosetHero,
+  ClosetHero2,
+  MenCate,
+  WomenCate,
 }

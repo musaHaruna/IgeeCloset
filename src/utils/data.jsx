@@ -1,4 +1,4 @@
-import { ClosetImg } from '../assets/images'
+import { ClosetImg, ClosetItem } from '../assets/images'
 
 const howItWorks = [
   {
@@ -52,6 +52,32 @@ const closetCard = [
     profileImg: <img src={ClosetImg} alt='' />,
   },
 ]
+const popularCloset = [
+  {
+    id: 1,
+    coverImg: <img src={ClosetImg} alt='' />,
+    name: "Maryann's Closet",
+    social: '@Maryann',
+    itemSize: '16 items listed',
+    profileImg: <img src={ClosetImg} alt='' />,
+  },
+  {
+    id: 2,
+    coverImg: <img src={ClosetImg} alt='' />,
+    name: "Maryann's Closet",
+    social: '@Maryann',
+    itemSize: '16 items listed',
+    profileImg: <img src={ClosetImg} alt='' />,
+  },
+  {
+    id: 3,
+    coverImg: <img src={ClosetImg} alt='' />,
+    name: "Maryann's Closet",
+    social: '@Maryann',
+    itemSize: '16 items listed',
+    profileImg: <img src={ClosetImg} alt='' />,
+  },
+]
 
 const faqData = [
   {
@@ -84,5 +110,23 @@ const singleClosetItem = [
     price: 'NGN 2000',
     size: '  Size: xL ',
   },
+  {
+    img: <img src={ClosetImg} alt='' />,
+    name: ' Desito Sear Wear ',
+    price: 'NGN 2000',
+    size: '  Size: xL ',
+  },
+  {
+    img: <img src={ClosetImg} alt='' />,
+    name: ' Desito Sear Wear ',
+    price: 'NGN 2000',
+    size: '  Size: xL ',
+  },
+  {
+    img: <img src={ClosetImg} alt='' />,
+    name: ' Desito Sear Wear ',
+    price: 'NGN 2000',
+    size: '  Size: xL ',
+  },
 ]
-export { howItWorks, closetCard, faqData, singleClosetItem }
+export { howItWorks, closetCard, faqData, singleClosetItem, popularCloset }
