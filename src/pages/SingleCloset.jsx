@@ -3,6 +3,8 @@ import Wrapper from '../assets/css/Closet'
 //import { useParams } from 'react-router-dom'
 import { ClosetBanner, ClosetImg } from '../assets/images'
 import { CiLocationOn, CiSearch } from 'react-icons/ci'
+import { singleClosetItem } from '../utils/data'
+import { SingleClosetItem } from '../components/website'
 
 const SingleCloset = () => {
   //const { id } = useParams()
@@ -109,6 +111,10 @@ const SingleCloset = () => {
           </select>
         </div>
       </section>
+
+      {singleClosetItem.map((item, index) => (
+        <SingleClosetItem key={index} item={item} />
+      ))}
     </Wrapper>
   )
 }

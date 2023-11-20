@@ -77,4 +77,12 @@ const faqData = [
   // Add more FAQ items as needed
 ]
 
-export { howItWorks, closetCard, faqData }
+const singleClosetItem = [
+  {
+    img: <img src={ClosetImg} alt='' />,
+    name: ' Desito Sear Wear ',
+    price: 'NGN 2000',
+    size: '  Size: xL ',
+  },
+]
+export { howItWorks, closetCard, faqData, singleClosetItem }

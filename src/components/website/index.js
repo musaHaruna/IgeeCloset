@@ -1,3 +1,4 @@
 import GetStartedCard from './GetStartedCard'
 import ClosetCard from './ClosetCard'
-export { GetStartedCard, ClosetCard }
+import SingleClosetItem from './SingleClosetItem'
+export { GetStartedCard, ClosetCard, SingleClosetItem }
