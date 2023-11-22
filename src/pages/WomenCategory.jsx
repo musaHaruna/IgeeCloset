@@ -1,7 +1,11 @@
 import { ClosetHero2, MenCate, WomenCate } from '../assets/images'
 import Wrapper from '../assets/css/WomenCategory'
 import { singleClosetItem } from '../utils/data'
+import { MdArrowForwardIos } from 'react-icons/md'
 import { SingleClosetItem } from '../components/website'
+import { PopularClosetCard } from '../components/website'
+import { closetCard, popularCloset } from '../utils/data'
+import { Link } from 'react-router-dom'
 
 const WomenCategory = () => {
   return (
@@ -30,25 +34,45 @@ const WomenCategory = () => {
         </section>
 
         <section className='category-head'>
-          <p>Explore</p>
-          <p>Category</p>
-          <p>Women</p>
+          <p>
+            Explore <MdArrowForwardIos />
+          </p>
+          <p>
+            Categories
+            <MdArrowForwardIos />
+          </p>
+          <p>
+            Women <MdArrowForwardIos />
+          </p>
         </section>
 
         <section className='categories'>
           <div>
             <img src={WomenCate} alt='' />
-            <h3>Women</h3>
+            <h3>Dresses & Jumpsuits</h3>
           </div>
           <div>
             <img src={MenCate} alt='' />
-            <h3>Men</h3>
+            <h3>Dresses & Jumpsuits</h3>
+          </div>
+          <div>
+            <img src={MenCate} alt='' />
+            <h3>Dresses & Jumpsuits</h3>
+          </div>
+          <div>
+            <img src={MenCate} alt='' />
+            <h3>Dresses & Jumpsuits</h3>
           </div>
         </section>
 
-        <section className='category-head'>
-          <h2>Trending</h2>
-          <p>2000 Products avaliable</p>
+        <h4 className='popular'>Popular Closets in this category</h4>
+
+        <section className='closets-container'>
+          {popularCloset.map((item, index) => (
+            <Link>
+              <PopularClosetCard key={index} item={item} />
+            </Link>
+          ))}
         </section>
         <section className='closet-cards'>
           {singleClosetItem.map((item, index) => (

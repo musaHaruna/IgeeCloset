@@ -6,7 +6,7 @@ Wrapper
 const SingleClosetItem = ({ item }) => {
   return (
     <Wrapper>
-      <div className='closet-card'>
+      <div className='closet-card category'>
         <div className='product-img'>{item.img}</div>
         <div className='product-desc'>
           <p>{item.name}</p>
@@ -20,7 +20,7 @@ const SingleClosetItem = ({ item }) => {
             <CiHeart /> <span>23</span>
           </div>
           <div>
-            <AiOutlineLike /> 
+            <AiOutlineLike />
             <span>21</span>
           </div>
           <div>

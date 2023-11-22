@@ -20,6 +20,6 @@ const links = [
     icon: <BsBank />,
   },
   { id: 5, text: 'My Offer', path: 'offer', icon: <BsShopWindow /> },
-  { id: 6, text: 'My Closet', path: '//closet', icon: <BsShopWindow /> },
+  { id: 6, text: 'My Closet', path: 'closet', icon: <BsShopWindow /> },
 ]
 export default links

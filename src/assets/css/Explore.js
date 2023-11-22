@@ -176,7 +176,7 @@ const Wrapper = styled.main`
   }
 
   .product-desc p {
-   text-align: left;
+    text-align: left;
   }
 `
 

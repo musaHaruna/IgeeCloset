@@ -28,8 +28,9 @@ function App() {
           <Route index element={<Home />} />
           <Route path='explore' element={<Explore />} />
           <Route path='closet' element={<Closet />} />
+          <Route path='closet/women' element={<WomenCategory />} />
           <Route path='closet/:id' element={<SingleCloset />} />
-          <Route path='closet/:women' element={<WomenCategory />} />
+
           <Route path='faq' element={<FAQ />} />
           <Route path='*' element={<Error />} />
         </Route>
@@ -42,11 +43,11 @@ function App() {
           }
         >
           <Route index element={<Profile />} />
-          <Route path='notifications' index element={<Notifications />} />
-          <Route path='purchases' index element={<Purchases />} />
-          <Route path='bank-information' index element={<BankInfo />} />
-          <Route path='offer' index element={<Offers />} />
-          <Route path='closet' index element={<UserCloset />} />
+          <Route path='notifications' element={<Notifications />} />
+          <Route path='purchases' element={<Purchases />} />
+          <Route path='bank-information' element={<BankInfo />} />
+          <Route path='offer' element={<Offers />} />
+          <Route path='closet' element={<UserCloset />} />
         </Route>
       </Routes>
     </BrowserRouter>

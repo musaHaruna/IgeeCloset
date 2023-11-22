@@ -1,11 +1,17 @@
-import React from 'react'
+import { useState } from 'react'
 import links from '../../utils/dashboardLinks'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { profile } from '../../assets/images/index'
 const DashboardLinks = () => {
+  const [activeTab, setActiveTab] = useState(0)
+
+  const handleTabClick = (index) => {
+    setActiveTab(index)
+  }
+
   return (
     <div className='nav-links'>
-      <div className='profile-container'> 
+      <div className='profile-container'>
         <div className='profile-img'>
           <img src={profile} alt='profile-img' />
         </div>
@@ -15,20 +21,19 @@ const DashboardLinks = () => {
         </div>
       </div>
       <h2>Account </h2>
-      {links.map((link) => {
+      {links.map((link, index) => {
         const { text, path, id, icon } = link
         return (
           <div className='nav-link' key={id}>
-            <NavLink
+            <Link
               to={path}
-              className={({ isActive }) => {
-                return isActive ? 'active' : 'inactive'
-              }}
+              onClick={() => handleTabClick(index)}
+              className={`${activeTab === index ? 'active' : 'inactive'}`}
               key={id}
             >
               <span className='icon'>{icon}</span>
               {text}
-            </NavLink>
+            </Link>
           </div>
         )
       })}

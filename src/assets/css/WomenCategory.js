@@ -126,10 +126,18 @@ const Wrapper = styled.main`
   }
   .category-head {
     margin: 2rem 0;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid #d3d3d3;
   }
   .category-head p {
     margin: 1rem 0;
     text-align: left;
+    display: flex;
+    align-items: center;
   }
 
   .categories {
@@ -141,10 +149,10 @@ const Wrapper = styled.main`
 
   .categories div {
     position: relative;
-    width: 50%;
+    width: 350px;
     height: 200px;
     overflow: hidden;
-    border-radius: 25px;
+    border-radius: 10px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     cursor: pointer;
   }
@@ -157,26 +165,95 @@ const Wrapper = styled.main`
 
   .categories div h3 {
     position: absolute;
-    top: 0;
+    top: 40%;
     width: 100%;
-    height: 100%;
+    height: 20%;
     background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--clr-white);
-    font-size: 32px;
+    font-size: 16px;
   }
 
   .closet-cards {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 1rem;
-    margin: 1.5rem 0;
+    margin: 4rem 0;
+  }
+  .closet-card {
+    width: 380px;
+    height: 250px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 16px;
+  }
+
+  .closet-card.category {
+    width: auto;
+    height: auto;
+    overflow: none;
   }
 
   .product-desc p {
     text-align: left;
+  }
+
+  .closets-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 1.5rem 0;
+  }
+
+  h5 {
+    margin: 0;
+    line-height: 1.3;
+  }
+  p {
+    margin: 0;
+    line-height: 1.3;
+  }
+  .closet-card-info {
+    position: absolute;
+    width: 100%;
+    top: 65%;
+    display: flex;
+    background: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0.5rem;
+  }
+
+  .arrow {
+    background-color: var(--clr-green);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--clr-white);
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .text-white {
+    font-size: 16px;
+    color: var(--clr-white);
+  }
+
+  .social {
+    margin: 0;
+    font-size: 14px;
+  }
+
+  .items {
+    font-size: 12px;
+  }
+
+
+  .popular {
+    margin: 3rem 0;
   }
 `
 
