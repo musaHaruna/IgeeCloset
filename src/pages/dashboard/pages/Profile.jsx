@@ -1,9 +1,21 @@
 import Wrapper from '../../../assets/css/Profile'
+import { ClosetBanner, MenCate } from '../../../assets/images'
+import { AiOutlineCamera } from 'react-icons/ai'
 
 const Profile = () => {
   return (
     <Wrapper>
-      <article></article>
+      <article className='user-banner'>
+        <div className='banner'>
+          <AiOutlineCamera className='upload-pic' />
+          <img src={ClosetBanner} alt='' />
+        </div>
+        <div className='user-profile-img'>
+          <img src={ClosetBanner} alt='' />
+          <AiOutlineCamera className='camera' />
+        </div>
+      </article>
+      <h4 className='text-green'>User information</h4>
       <article>
         <form action=''>
           <div>
@@ -31,11 +43,11 @@ const Profile = () => {
             <input type='text' placeholder='No. 57 Abuja, area 11 Nigeria' />
           </div>
           <div>
-            <label>Delivery Address</label>
-            <textarea name='' id='' cols='30' rows='10'></textarea>
+            <label>Bio</label>
+            <textarea name='' id='' cols='20' rows='5'></textarea>
           </div>
-          <button>Save</button>
-          <button>Delete my account</button>
+          <button className='btn-green'>Save</button>
+          <button className='btn-red'>Delete my account</button>
         </form>
       </article>
     </Wrapper>
