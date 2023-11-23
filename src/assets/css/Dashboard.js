@@ -10,6 +10,12 @@ const Wrapper = styled.article`
     color: #121212;
   }
 
+  .sidebar-links {
+    position: fixed;
+    background-color: #fff;
+    width: 250px;
+    z-index: 2;
+  }
   .nav-link {
     margin: 1rem 0;
   }
@@ -61,6 +67,10 @@ const Wrapper = styled.article`
 
   .status {
     font-size: 12px;
+  }
+
+  .dashboard-page {
+    margin-bottom: 2rem;
   }
 `
 

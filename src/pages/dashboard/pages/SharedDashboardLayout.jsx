@@ -5,15 +5,19 @@ import DashboardLinks from '../../../components/dashboard/DashboardLinks'
 import Wrapper from '../../../assets/css/Dashboard'
 const SharedDashboardLayout = () => {
   return (
-    <main className='container dashboard'>
-      <Navbar />
+    <main>
+      <div className='sticky'>
+        <Navbar />
+      </div>
 
-      <Wrapper>
-        <DashboardLinks />
-        <div className='dashboard-page'>
-          <Outlet />
-        </div>
-      </Wrapper>
+      <main className='container dashboard'>
+        <Wrapper>
+          <DashboardLinks />
+          <div className='dashboard-page'>
+            <Outlet />
+          </div>
+        </Wrapper>
+      </main>
     </main>
   )
 }

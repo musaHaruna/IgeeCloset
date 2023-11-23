@@ -10,34 +10,36 @@ const DashboardLinks = () => {
   }
 
   return (
-    <div className='nav-links'>
-      <div className='profile-container'>
-        <div className='profile-img'>
-          <img src={profile} alt='profile-img' />
-        </div>
-        <div>
-          <h2 className='username'>Musa</h2>
-          <p className='status text-green '>active</p>
-        </div>
-      </div>
-      <h2>Account </h2>
-      {links.map((link, index) => {
-        const { text, path, id, icon } = link
-        return (
-          <div className='nav-link' key={id}>
-            <Link
-              to={path}
-              onClick={() => handleTabClick(index)}
-              className={`${activeTab === index ? 'active' : 'inactive'}`}
-              key={id}
-            >
-              <span className='icon'>{icon}</span>
-              {text}
-            </Link>
+    <section>
+      <div className='sidebar-links'>
+        <div className='profile-container'>
+          <div className='profile-img'>
+            <img src={profile} alt='profile-img' />
           </div>
-        )
-      })}
-    </div>
+          <div>
+            <h2 className='username'>Musa</h2>
+            <p className='status text-green '>active</p>
+          </div>
+        </div>
+        <h2>Account </h2>
+        {links.map((link, index) => {
+          const { text, path, id, icon } = link
+          return (
+            <div className='nav-link' key={id}>
+              <Link
+                to={path}
+                onClick={() => handleTabClick(index)}
+                className={`${activeTab === index ? 'active' : 'inactive'}`}
+                key={id}
+              >
+                <span className='icon'>{icon}</span>
+                {text}
+              </Link>
+            </div>
+          )
+        })}
+      </div>
+    </section>
   )
 }
 

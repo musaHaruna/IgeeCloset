@@ -160,3 +160,11 @@ input {
   background: var(--clr-green);
   border-radius: 5px;
 }
+
+.sticky {
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 8;
+  padding: 1rem 0;
+}

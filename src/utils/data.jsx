@@ -1,4 +1,11 @@
 import { ClosetImg, ClosetItem } from '../assets/images'
+import {
+  AwaitingApproval,
+  Draft,
+  Listed,
+  NotApproved,
+  Orders,
+} from '../components/dashboard/MyClosets'
 
 const howItWorks = [
   {
@@ -129,4 +136,19 @@ const singleClosetItem = [
     size: '  Size: xL ',
   },
 ]
-export { howItWorks, closetCard, faqData, singleClosetItem, popularCloset }
+
+const myClosetTabs = [
+  { label: 'Listed', content: <Listed /> },
+  { label: 'Orders', content: <Orders /> },
+  { label: 'Not Approved', content: <NotApproved /> },
+  { label: 'Draft', content: <Draft /> },
+  { label: 'Awaiting Approval', content: <AwaitingApproval /> },
+]
+export {
+  howItWorks,
+  closetCard,
+  faqData,
+  singleClosetItem,
+  popularCloset,
+  myClosetTabs,
+}

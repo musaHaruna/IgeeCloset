@@ -1,8 +1,9 @@
-import { CiUser } from 'react-icons/ci'
+import { CiUser, CiDollar } from 'react-icons/ci'
 import { IoIosNotificationsOutline } from 'react-icons/io'
 import { BsHandbag } from 'react-icons/bs'
 import { BsBank } from 'react-icons/bs'
 import { BsShopWindow } from 'react-icons/bs'
+import { LuCircleDollarSign } from 'react-icons/lu'
 
 const links = [
   { id: 1, text: 'Profile', path: '/user', icon: <CiUser /> },
@@ -19,7 +20,7 @@ const links = [
     path: 'bank-information',
     icon: <BsBank />,
   },
-  { id: 5, text: 'My Offer', path: 'offer', icon: <BsShopWindow /> },
+  { id: 5, text: 'My Offer', path: 'offer', icon: <LuCircleDollarSign /> },
   { id: 6, text: 'My Closet', path: 'closet', icon: <BsShopWindow /> },
 ]
 export default links
