@@ -197,6 +197,24 @@ const Wrapper = styled.article`
     margin-top: 2rem;
   }
   margin: 1rem 0;
+
+  .otp-box {
+    display: flex;
+    gap: 0.5rem;
+    width: 40%;
+    margin: 1rem auto;
+  }
+
+  .otp-box input {
+    padding: 0.5rem;
+  text-align: center;
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 `
 
 export default Wrapper

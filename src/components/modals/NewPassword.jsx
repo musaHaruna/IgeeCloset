@@ -2,14 +2,14 @@ import React, { useState } from 'react'
 import Wrapper from '../../assets/css/Login'
 import { AiOutlineClose } from 'react-icons/ai'
 import { Logo } from '../global'
-import { set, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { useUserLogin } from '../../utils/usersApi'
 import { useDispatch, useSelector } from 'react-redux'
 import { openLoginModal } from '../../features/user/userSlice'
 import NewPasswordWrapper from './wrappers/NewPasswordWrapper'
 import NewPasswordSuccess from './NewPasswordSuccess'
+import { useResetPassword } from '../../utils/usersApi'
 const NewPassword = ({
   openNewPassword,
   closeNewPassword,
@@ -17,10 +17,6 @@ const NewPassword = ({
   closeForgetModal,
   closeModal,
 }) => {
-  const schema = yup.object().shape({
-    username: yup.string().required('Username is required'),
-  })
-
   const { isSignUpModalOpen, isLoginModalOpen, user } = useSelector(
     (state) => state.user
   )
@@ -36,6 +32,17 @@ const NewPassword = ({
     closeForgetModal()
   }
   console.log(isLoginModalOpen)
+  const schema = yup.object().shape({
+    password: yup
+      .string()
+      .required('Password is required')
+      .min(8, 'Password must be at least 8 characters'),
+    confirmPassword: yup
+      .string()
+      .required('Confirm Password is required')
+      .oneOf([yup.ref('password'), null], 'Passwords must match'),
+  })
+
   const {
     register,
     handleSubmit,
@@ -44,10 +51,10 @@ const NewPassword = ({
     resolver: yupResolver(schema),
   })
 
-  const { userLogin } = useUserLogin()
+  const { resetPassword } = useResetPassword()
 
   const onSubmit = (data) => {
-    userLogin(data, {
+    resetPassword(data, {
       onSuccess: () => {
         console.log(data)
       },
@@ -66,11 +73,11 @@ const NewPassword = ({
         <form onSubmit={handleSubmit(onSubmit)}>
           <div>
             <label>New Password</label>
-            <input type='text' />
+            <input type='text' {...register('password')} />
           </div>
           <div>
             <label>Confirm Password</label>
-            <input type='text' />
+            <input type='text' {...register('confirmPassword')} />
           </div>
           <button className='btn signin' onClick={openSuccess}>
             Submit

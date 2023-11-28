@@ -1,21 +1,21 @@
 import React, { useState } from 'react'
 import Wrapper from '../../assets/css/Login'
-import OtpInput from 'react-otp-input'
 import { IoChevronBackOutline } from 'react-icons/io5'
-
 import { Logo } from '../global'
-import { useForm } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { useUserLogin } from '../../utils/usersApi'
+import { useOtpCode, useForgotPassword } from '../../utils/usersApi'
 import { useDispatch, useSelector } from 'react-redux'
-import { closeLoginModal, openLoginModal } from '../../features/user/userSlice'
+import {
+  closeLoginModal,
+  openLoginModal,
+  setOTP,
+} from '../../features/user/userSlice'
 import OtpWrapper from './wrappers/OtpWrapper'
 import NewPassword from './NewPassword'
 
 const OTP = ({ openModal, closeModal, closeForgetModal }) => {
   const schema = yup.object().shape({
-    username: yup.string().required('Username is required'),
+    otp: yup.string().required(),
   })
 
   const user = useSelector((state) => state.user)
@@ -38,26 +38,61 @@ const OTP = ({ openModal, closeModal, closeForgetModal }) => {
     dispatch(openLoginModal())
   }
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  })
-  const { userLogin } = useUserLogin()
+  const [otp, setOtp] = useState(['', '', '', ''])
 
-  const onSubmit = (data) => {
-    userLogin(data, {
+  const handleChange = (e, index) => {
+    const value = e.target.value
+    setOtp((prevOtp) => {
+      const newOtp = [...prevOtp]
+      newOtp[index] = value
+      return newOtp
+    })
+    if (e.target.nextSibling) {
+      e.target.nextSibling.focus()
+    }
+  }
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   formState: { errors },
+  // } = useForm({
+  //   resolver: yupResolver(schema),
+  // })
+
+  const newOTP = parseInt(otp.join(''))
+  console.log(newOTP)
+
+  // const onSubmit = (data) => {
+  //   otpCode(data, {
+  //     onSuccess: () => {
+  //       console.log(data)
+  //     },
+  //   })
+  // }
+
+  // const [number, setNumber] = useState('')
+
+  // const handleChange2 = (event) => {
+  //   // Ensure only numeric input
+  //   const value = event.target.value.replace(/\D/g, '')
+
+  //   // Limit to 4 digits
+  //   if (value.length <= 4) {
+  //     setNumber(value)
+  //   }
+  // }
+
+  dispatch(setOTP(newOTP))
+  const { otpCode } = useOtpCode()
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    otpCode({
       onSuccess: () => {
         console.log(data)
       },
     })
+    openNewPasswordModal()
   }
-
-  const [otp, setOtp] = useState('')
-
-  const handleChange = (code) => setCode(code)
   return (
     <OtpWrapper modal={openModal}>
       <Wrapper>
@@ -68,12 +103,26 @@ const OTP = ({ openModal, closeModal, closeForgetModal }) => {
           <Logo />
         </div>
 
-        <form className='otp-form' onSubmit={handleSubmit(onSubmit)}>
+        <form className='otp-form'>
           <h3>Enter the code</h3>
           <p>A code was sent to f*******@gmail.com</p>
-          <input type='text' />
+          <div className='otp-box'>
+            {otp.map((digit, index) => (
+              <input
+                type='number'
+                key={index}
+                value={digit}
+                onChange={(e) => {
+                  handleChange(e, index)
+                }}
+                maxLength={1}
+              />
+            ))}
+          </div>
           <p className='left'>resend code in </p>
-          <p className='resend' onClick={openNewPasswordModal}>Resend OTP </p>
+          <button className='resend' onClick={handleSubmit}>
+            Resend OTP{' '}
+          </button>
         </form>
 
         {newPassword && (

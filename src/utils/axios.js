@@ -2,7 +2,7 @@ import axios from 'axios'
 // import { getUserFromLocalStorage } from './localstorage'
 import { getUserFromLocalStorage } from './localStorage'
 const customFetch = axios.create({
-  baseURL: 'https://igeecloset.mukeey.online/api/',
+  baseURL: 'https://api.igeecloset.com/api/v1/',
 })
 
 customFetch.interceptors.request.use((config) => {

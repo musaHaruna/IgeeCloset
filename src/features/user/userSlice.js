@@ -5,6 +5,7 @@ const initialState = {
   user: getUserFromLocalStorage(),
   isLoginModalOpen: false,
   isSignUpModalOpen: false,
+  otp: null,
 }
 
 export const userSlice = createSlice({
@@ -26,6 +27,9 @@ export const userSlice = createSlice({
     closeSignUpModal: (state) => {
       state.isSignUpModalOpen = false
     },
+    setOTP: (state, { payload }) => {
+      state.otp = payload
+    },
   },
 })
 
@@ -35,6 +39,7 @@ export const {
   closeLoginModal,
   openSignUpModal,
   closeSignUpModal,
+  setOTP,
 } = userSlice.actions
 
 export default userSlice.reducer

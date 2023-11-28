@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import Wrapper from '../../assets/css/Login'
 import { AiOutlineClose } from 'react-icons/ai'
-import { Logo } from '../global'
+import { useForgotPassword } from '../../utils/usersApi'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { useUserLogin } from '../../utils/usersApi'
 import { useDispatch, useSelector } from 'react-redux'
 import { closeLoginModal } from '../../features/user/userSlice'
 import ForgetWrapper from './wrappers/ForgetWrapper'
@@ -14,8 +13,13 @@ import OTP from './OTP'
 
 const ForgetPassword = ({ openForgetModal, closeForgetModal }) => {
   const schema = yup.object().shape({
-    username: yup.string().required('Username is required'),
-    password: yup.string().required('Password is required'),
+    email: yup
+      .string()
+      .matches(
+        /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
+        'Invalid email address'
+      )
+      .required('Email is required'),
   })
 
   const user = useSelector((state) => state.user)
@@ -31,10 +35,6 @@ const ForgetPassword = ({ openForgetModal, closeForgetModal }) => {
     setOtp(true)
   }
 
-  const closeOptModal = () => {
-    setOtp(false)
-  }
-
   const {
     register,
     handleSubmit,
@@ -43,15 +43,15 @@ const ForgetPassword = ({ openForgetModal, closeForgetModal }) => {
     resolver: yupResolver(schema),
   })
 
-  const { userLogin } = useUserLogin()
+  const { forgotPassword } = useForgotPassword()
 
   const onSubmit = (data) => {
-    userLogin(data, {
+    forgotPassword(data, {
       onSuccess: () => {
         console.log(data)
       },
     })
-    dispatch(closeLoginModal())
+    openOtpModal()
   }
   return (
     <ForgetWrapper openModal={openForgetModal}>
@@ -74,14 +74,14 @@ const ForgetPassword = ({ openForgetModal, closeForgetModal }) => {
               E-mail Address
               <input
                 type='text'
-                {...register('username')}
+                {...register('email')}
                 placeholder='Type your e-mail or username'
               />
               {errors.username && <p>{errors.username.message}</p>}
             </label>
           </div>
 
-          <button onClick={openOtpModal} className='btn signin forget' type='submit'>
+          <button className='btn signin forget' type='submit'>
             Submit
           </button>
         </form>
