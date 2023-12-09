@@ -8,9 +8,9 @@ import { Logo } from '../global'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { useUserLogin } from '../../utils/usersApi'
+import { useUserLogin } from '../../utils/usersAuthenticationApi'
 import { useDispatch, useSelector } from 'react-redux'
-import { closeLoginModal } from '../../features/user/userSlice'
+import { closeLoginModal, loginUser } from '../../features/user/userSlice'
 import { ForgetPassword } from './index'
 
 const Login = () => {
@@ -45,15 +45,20 @@ const Login = () => {
     resolver: yupResolver(schema),
   })
 
-  const { userLogin } = useUserLogin()
+  const { userLogin, isPending } = useUserLogin()
+  console.log(isPending)
 
   const onSubmit = (data) => {
     userLogin(data, {
       onSuccess: () => {
-        console.log(data)
+        alert('Success')
+      },
+      onError: () => {
+        alert('Error')
+        return
       },
     })
-    dispatch(closeLoginModal())
+    isPending ? <h2>Loding</h2> : handleCloseModal()
   }
   return (
     <LoginWrapper>

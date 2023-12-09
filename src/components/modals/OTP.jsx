@@ -3,7 +3,10 @@ import Wrapper from '../../assets/css/Login'
 import { IoChevronBackOutline } from 'react-icons/io5'
 import { Logo } from '../global'
 import * as yup from 'yup'
-import { useOtpCode, useForgotPassword } from '../../utils/usersApi'
+import {
+  useOtpCode,
+  useForgotPassword,
+} from '../../utils/usersAuthenticationApi'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   closeLoginModal,
@@ -51,47 +54,24 @@ const OTP = ({ openModal, closeModal, closeForgetModal }) => {
       e.target.nextSibling.focus()
     }
   }
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   formState: { errors },
-  // } = useForm({
-  //   resolver: yupResolver(schema),
-  // })
 
   const newOTP = parseInt(otp.join(''))
   console.log(newOTP)
 
-  // const onSubmit = (data) => {
-  //   otpCode(data, {
-  //     onSuccess: () => {
-  //       console.log(data)
-  //     },
-  //   })
-  // }
-
-  // const [number, setNumber] = useState('')
-
-  // const handleChange2 = (event) => {
-  //   // Ensure only numeric input
-  //   const value = event.target.value.replace(/\D/g, '')
-
-  //   // Limit to 4 digits
-  //   if (value.length <= 4) {
-  //     setNumber(value)
-  //   }
-  // }
-
   dispatch(setOTP(newOTP))
-  const { otpCode } = useOtpCode()
+  const { otpCode, status } = useOtpCode()
+  console.log(status)
   const handleSubmit = (e) => {
     e.preventDefault()
     otpCode({
-      onSuccess: () => {
-        console.log(data)
-      },
+      onSuccess: () => {},
     })
-    openNewPasswordModal()
+    if (status === 'pending') {
+      alert('pending')
+      openNew = PasswordModal()
+    } else if (status === 'success') {
+      openNewPasswordModal()
+    }
   }
   return (
     <OtpWrapper modal={openModal}>

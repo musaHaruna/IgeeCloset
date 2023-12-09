@@ -5,6 +5,7 @@ const Wrapper = styled.nav`
   align-items: center;
   justify-content: space-between;
   background-color: #fff;
+  padding: 1.5rem 0;
 
   ul {
     display: flex;

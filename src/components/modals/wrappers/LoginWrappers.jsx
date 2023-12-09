@@ -5,6 +5,7 @@ const LoginWrapper = ({ children }) => {
   const modalStyle = {
     display: isLoginModalOpen ? 'block' : 'none',
     position: 'fixed',
+    zIndex: 999,
     top: 0,
     left: 0,
     width: '100%',
@@ -21,6 +22,7 @@ const LoginWrapper = ({ children }) => {
     overflowY: 'hidden',
     padding: '1.5rem',
     borderRadius: '5px',
+    zIndex: 3000
   }
 
   return (

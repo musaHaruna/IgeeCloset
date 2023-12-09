@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { loginUser } from '../features/user/userSlice'
+import { loginUser, openLoginModal } from '../features/user/userSlice'
 import customFetch from './axios'
 import { addUserToLocalStorage } from './localStorage'
 import { useDispatch } from 'react-redux'
@@ -41,7 +41,7 @@ export const useForgotPassword = () => {
   const {
     data,
     mutate: forgotPassword,
-    isLoading,
+    isError,
   } = useMutation({
     mutationFn: ({ email }) =>
       customFetch.post(
@@ -60,48 +60,51 @@ export const useForgotPassword = () => {
     },
     onError: (error) => {
       console.log(error.response.data.message)
+      alert(error.response.data.message)
     },
   })
-  return { data, forgotPassword, isLoading }
+  return { data, forgotPassword, isError }
 }
-export const useReseytPassword = () => {
+export const useResetPassword = () => {
   const queryClient = useQueryClient()
   const {
     data,
     mutate: resetPassword,
-    isLoading,
+    isError,
   } = useMutation({
-    mutationFn: ({ password, password_confirmation }) =>
+    mutationFn: ({ password }) =>
       customFetch.post(
-        `customer/reset-password?password=${password}&password_confirmation=${password_confirmation}`,
+        `customer/reset-password?password=${password}&password_confirmation=${password}`,
         {},
         {
           params: {
-            password,
-            password_confirmation,
+            passoword: password,
           },
         }
       ),
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['user'] })
       console.log(data)
-      alert(data)
+      alert(data.data.message)
     },
     onError: (error) => {
       console.log(error.response.data.message)
-      alert(data)
+      alert(error.response.data.message)
     },
   })
-  return { data, resetPassword, isLoading }
+  return { data, resetPassword, isError }
 }
+
 export const useOtpCode = () => {
   let { otp } = useSelector((store) => store.user)
+  if (otp === NaN || null) return
 
   const queryClient = useQueryClient()
   const {
     data,
     mutate: otpCode,
-    isLoading,
+    status,
+    isSuccess,
   } = useMutation({
     mutationFn: ({ otpCode }) =>
       customFetch.post(
@@ -119,10 +122,12 @@ export const useOtpCode = () => {
     },
     onError: (error) => {
       console.log(error.response.data)
+      alert(error.response.data.message)
+      return
     },
   })
 
-  return { data, otpCode, isLoading }
+  return { data, otpCode, status }
 }
 export const useUserLogin = () => {
   const dispatch = useDispatch()
@@ -130,7 +135,8 @@ export const useUserLogin = () => {
   const {
     data,
     mutate: userLogin,
-    isLoading,
+
+    isPending,
   } = useMutation({
     mutationFn: ({ username, password }) =>
       customFetch.post(
@@ -148,10 +154,14 @@ export const useUserLogin = () => {
       console.log(data.data)
       dispatch(loginUser(data.data.data))
       addUserToLocalStorage(data.data.data)
+      alert('Success')
     },
     onError: (error) => {
       console.log(error.response.data.message)
+      alert('User not found or invalid credentials')
+      dispatch(openLoginModal())
+      return
     },
   })
-  return { data, userLogin, isLoading }
+  return { data, userLogin, isPending }
 }

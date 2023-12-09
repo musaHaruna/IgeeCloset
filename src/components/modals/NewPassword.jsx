@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { openLoginModal } from '../../features/user/userSlice'
 import NewPasswordWrapper from './wrappers/NewPasswordWrapper'
 import NewPasswordSuccess from './NewPasswordSuccess'
-import { useResetPassword } from '../../utils/usersApi'
+import { useResetPassword } from '../../utils/usersAuthenticationApi'
 const NewPassword = ({
   openNewPassword,
   closeNewPassword,
@@ -33,16 +33,12 @@ const NewPassword = ({
   }
   console.log(isLoginModalOpen)
   const schema = yup.object().shape({
-    password: yup
-      .string()
-      .required('Password is required')
-      .min(8, 'Password must be at least 8 characters'),
+    password: yup.string().required('Password is required'),
     confirmPassword: yup
       .string()
       .required('Confirm Password is required')
-      .oneOf([yup.ref('password'), null], 'Passwords must match'),
+      .oneOf([yup.ref('password')], 'Passwords must match'),
   })
-
   const {
     register,
     handleSubmit,
@@ -57,6 +53,7 @@ const NewPassword = ({
     resetPassword(data, {
       onSuccess: () => {
         console.log(data)
+        openSuccess()
       },
     })
   }
@@ -79,7 +76,7 @@ const NewPassword = ({
             <label>Confirm Password</label>
             <input type='text' {...register('confirmPassword')} />
           </div>
-          <button className='btn signin' onClick={openSuccess}>
+          <button className='btn signin' type='submit'>
             Submit
           </button>
         </form>

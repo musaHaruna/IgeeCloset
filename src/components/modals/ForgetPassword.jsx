@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Wrapper from '../../assets/css/Login'
 import { AiOutlineClose } from 'react-icons/ai'
-import { useForgotPassword } from '../../utils/usersApi'
+import { useForgotPassword } from '../../utils/usersAuthenticationApi'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
@@ -43,15 +43,14 @@ const ForgetPassword = ({ openForgetModal, closeForgetModal }) => {
     resolver: yupResolver(schema),
   })
 
-  const { forgotPassword } = useForgotPassword()
+  const { forgotPassword, isError } = useForgotPassword()
 
   const onSubmit = (data) => {
     forgotPassword(data, {
       onSuccess: () => {
-        console.log(data)
+        openOtpModal()
       },
     })
-    openOtpModal()
   }
   return (
     <ForgetWrapper openModal={openForgetModal}>

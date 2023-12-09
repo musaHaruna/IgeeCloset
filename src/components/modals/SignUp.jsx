@@ -9,7 +9,7 @@ import { Logo } from '../global'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { useRegisterUser } from '../../utils/usersApi'
+import { useRegisterUser } from '../../utils/usersAuthenticationApi'
 
 import SignUpWrapper from './wrappers/SignUpWrapper'
 
@@ -20,7 +20,6 @@ const SignUp = () => {
     dispatch(openLoginModal())
   }
 
- 
   const handleCloseSignup = () => {
     dispatch(closeSignUpModal())
   }
