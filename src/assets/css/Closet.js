@@ -4,7 +4,7 @@ const Wrapper = styled.main`
   padding-bottom: 1.5rem;
   margin-bottom: 1rem;
   border-bottom: 1px solid #a3a3a3;
-  max-width: 14440px;
+  max-width: 1440px;
   width: 95%;
   margin: 1rem auto;
 

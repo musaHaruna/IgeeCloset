@@ -4,7 +4,8 @@ import { FaArrowRight } from 'react-icons/fa'
 const PopularClosetCard = ({ item }) => {
   return (
     <section className='closet-card'>
-      <div>{item.coverImg}</div>
+      {item.coverImg}
+
       <div className='closet-card-info'>
         <div>
           <h5 className='text-white'>{item.name}</h5>

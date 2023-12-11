@@ -19,6 +19,7 @@ import {
   SharedDashboardLayout,
   UserCloset,
 } from './pages/dashboard/pages'
+import ProductDetail from './pages/ProductDetail'
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path='explore' element={<Explore />} />
           <Route path='closet' element={<Closet />} />
           <Route path='closet/women' element={<WomenCategory />} />
+          <Route path='closet/product' element={<ProductDetail />} />
           <Route path='closet/:id' element={<SingleCloset />} />
 
           <Route path='faq' element={<FAQ />} />

@@ -62,7 +62,7 @@ const closetCard = [
 const popularCloset = [
   {
     id: 1,
-    coverImg: <img src={ClosetImg} alt='' />,
+    coverImg: <img className='img' src={ClosetImg} alt='' />,
     name: "Maryann's Closet",
     social: '@Maryann',
     itemSize: '16 items listed',

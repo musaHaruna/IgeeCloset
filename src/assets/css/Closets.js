@@ -9,6 +9,8 @@ const Wrapper = styled.main`
     background: rgba(0, 0, 0, 0.5);
   }
 
+  img {
+  }
   .content-container {
     position: absolute;
     display: flex;
@@ -31,24 +33,30 @@ const Wrapper = styled.main`
     text-shadow: 0 0 7px #fff, 0 0 7px #fff;
   }
 
-  .content h2,
-  p {
+  .content h2 {
     text-align: center;
   }
 
+  .content p {
+    text-align: center;
+  }
+
+  .content .closet-card .info div p.social.text-green {
+    text-align: left;
+  }
   .closets-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     margin: 1.5rem 0;
+    gap: 2rem;
   }
 
   .closet-card {
-    width: 380px;
-    height: 250px;
-    overflow: hidden;
     position: relative;
-    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 2rem;
   }
+
   h5 {
     margin: 0;
     line-height: 1.3;
@@ -60,7 +68,7 @@ const Wrapper = styled.main`
   .closet-card-info {
     position: absolute;
     width: 100%;
-    top: 65%;
+    top: 10.5rem;
     display: flex;
     background: rgba(0, 0, 0, 0.5);
     align-items: center;
@@ -110,6 +118,17 @@ const Wrapper = styled.main`
     text-align: left;
     margin: 1.5rem 0;
     font-weight: 500;
+  }
+
+  .closets-container a {
+    display: block;
+    overflow: hidden;
+    height: 250px;
+    border-radius: 16px;
+  }
+
+  .all-igee{
+    margin-bottom: 3rem;
   }
 `
 

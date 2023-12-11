@@ -51,7 +51,7 @@ const Closet = () => {
         <p className='popular'>
           All <span className='text-green'>iGee</span> Closets
         </p>
-        <section className='closets-container'>
+        <section className='closets-container all-igee'>
           {popularCloset.map((item, index) => (
             <Link>
               <PopularClosetCard key={index} item={item} />

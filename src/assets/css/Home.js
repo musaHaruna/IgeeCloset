@@ -16,7 +16,7 @@ const Wrapper = styled.article`
   }
 
   .cta-btns {
-    display: flex;
+    display: flex; 
     justify-content: center;
     gap: 1.5rem;
     margin: 1.5rem 0;
@@ -201,6 +201,8 @@ const Wrapper = styled.article`
     border-radius: 15px;
     justify-self: center;
     cursor: pointer;
+    height: 550px;
+
   }
 
   .profile-img {
@@ -264,12 +266,13 @@ const Wrapper = styled.article`
     overflow: hidden;
     border-radius: 25px;
     width: 90%;
+    height: 600px;
     margin: 1rem auto;
   }
 
   .our-story-text-container {
     position: absolute;
-    top: 30rem;
+    top: 26rem;
     height: 200px;
     border-radius: 32px;
     background: rgba(23, 25, 28, 0.7);

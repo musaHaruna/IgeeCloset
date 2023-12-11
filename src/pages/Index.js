@@ -7,6 +7,7 @@ import Home from './Home'
 import WomenCategory from './WomenCategory'
 import SingleCloset from './SingleCloset'
 import ProtectedRoute from './ProtectedRoute'
+import ProductDetail from './ProductDetail'
 
 export {
   Landing,
@@ -18,4 +19,5 @@ export {
   ProtectedRoute,
   SingleCloset,
   WomenCategory,
+  ProductDetail,
 }
