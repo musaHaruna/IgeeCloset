@@ -11,6 +11,7 @@ import ClosetHero from '../images/Home/closet-hero.png'
 import ClosetHero2 from '../images/Home/closet-hero-2.png'
 import MenCate from '../images/Home/men-cate.png'
 import WomenCate from '../images/Home/women-cate.png'
+import SingleProduct from '../images/Home/single-product.png'
 
 export {
   HeroImg1,
@@ -26,4 +27,5 @@ export {
   ClosetHero2,
   MenCate,
   WomenCate,
+  SingleProduct,
 }
