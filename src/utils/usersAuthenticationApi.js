@@ -29,10 +29,11 @@ export const useRegisterUser = () => {
       ),
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['user'] })
-      toast.success(data.data)
+      toast.success('Registration Successfull')
     },
     onError: (error) => {
       console.log(error.response.data.message)
+      toast.error(error.response.data.message)
     },
   })
   return { data, registerUser, isLoading }
@@ -136,7 +137,6 @@ export const useUserLogin = () => {
   const {
     data,
     mutate: userLogin,
-
     isPending,
   } = useMutation({
     mutationFn: ({ username, password }) =>
