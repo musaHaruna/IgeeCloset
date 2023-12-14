@@ -4,6 +4,7 @@ import customFetch from './axios'
 import { addUserToLocalStorage } from './localStorage'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
+import { toast } from 'react-toastify'
 
 export const useRegisterUser = () => {
   const queryClient = useQueryClient()
@@ -28,7 +29,7 @@ export const useRegisterUser = () => {
       ),
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['user'] })
-      console.log(data.data)
+      toast.success(data.data)
     },
     onError: (error) => {
       console.log(error.response.data.message)
@@ -154,7 +155,7 @@ export const useUserLogin = () => {
       console.log(data.data)
       dispatch(loginUser(data.data.data))
       addUserToLocalStorage(data.data.data)
-      alert('Success')
+      toast.success('Welcome Back')
     },
     onError: (error) => {
       console.log(error.response.data.message)

@@ -1,17 +1,32 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import Wrapper from '../../assets/css/Navbar'
 import { Logo } from './index'
 import { useDispatch, useSelector } from 'react-redux'
-import { openSignUpModal, openLoginModal } from '../../features/user/userSlice'
+import {
+  openSignUpModal,
+  openLoginModal,
+  logoutUser,
+} from '../../features/user/userSlice'
 import { Login, SignUp } from '../modals'
 import { BsSearch } from 'react-icons/bs'
+import { useState } from 'react'
 
 const Navbar = () => {
   const dispatch = useDispatch()
   const { isSignUpModalOpen, isLoginModalOpen, user } = useSelector(
     (state) => state.user
   )
+
+  const [isOpen, setIsOpen] = useState(false)
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen)
+  }
+
+  const handleOptionClick = () => {
+    setIsOpen(false)
+  }
 
   const username = user?.user.username.charAt(0).toUpperCase()
 
@@ -22,6 +37,10 @@ const Navbar = () => {
     dispatch(openLoginModal())
   }
 
+  const handleLogout = () => {
+    setIsOpen(false)
+    dispatch(logoutUser())
+  }
   console.log(isLoginModalOpen)
 
   return (
@@ -29,7 +48,9 @@ const Navbar = () => {
       <section className=''>
         <Wrapper>
           <div className='logo'>
-            <Logo />
+            <Link to='/'>
+              <Logo />
+            </Link>
           </div>
 
           <div className='nav-search'>
@@ -69,11 +90,27 @@ const Navbar = () => {
               </NavLink>
             </li>
             {user ? (
-              <h2 className='username'>{username}</h2>
+              <h2 onClick={toggleDropdown} className='username'>
+                {username}
+              </h2>
             ) : (
               <li onClick={handleOpenModal} className='cta-green-outline-flat'>
                 Login/Signup
               </li>
+            )}
+
+            {isOpen && (
+              <div className='options'>
+                <p onClick={handleOptionClick}>
+                  <Link to='/user'>Profile</Link>
+                </p>
+                <p onClick={handleOptionClick}>
+                  <Link to='/user/notifications'>Notifications </Link>
+                </p>
+                <p onClick={handleLogout}>
+                  <Link to={'/'}> Logout</Link>
+                </p>
+              </div>
             )}
           </ul>
           {isSignUpModalOpen && <SignUp />}

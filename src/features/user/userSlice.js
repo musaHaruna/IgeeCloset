@@ -1,6 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { getUserFromLocalStorage } from '../../utils/localStorage'
+import {
+  getUserFromLocalStorage,
+  removeUserFromLocalStorage,
+} from '../../utils/localStorage'
 
+import { toast } from 'react-toastify'
 const initialState = {
   user: getUserFromLocalStorage(),
   isLoginModalOpen: false,
@@ -14,6 +18,11 @@ export const userSlice = createSlice({
   reducers: {
     loginUser: (state, action) => {
       state.user = action.payload
+    },
+    logoutUser: (state, action) => {
+      state.user = null
+      removeUserFromLocalStorage()
+      toast.success('Logging out user')
     },
     openLoginModal: (state) => {
       state.isLoginModalOpen = true
@@ -40,6 +49,7 @@ export const {
   openSignUpModal,
   closeSignUpModal,
   setOTP,
+  logoutUser,
 } = userSlice.actions
 
 export default userSlice.reducer

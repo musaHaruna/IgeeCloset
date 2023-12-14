@@ -20,6 +20,8 @@ import {
   UserCloset,
 } from './pages/dashboard/pages'
 import ProductDetail from './pages/ProductDetail'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
   return (
@@ -52,6 +54,7 @@ function App() {
           <Route path='closet' element={<UserCloset />} />
         </Route>
       </Routes>
+      <ToastContainer position='top-center' />
     </BrowserRouter>
   )
 }
