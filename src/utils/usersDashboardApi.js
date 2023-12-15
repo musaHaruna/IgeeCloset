@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import customFetch from './axios'
-
+import { toast } from 'react-toastify'
 export const useFetchProfile = () => {
   const { isLoading, data, isError } = useQuery({
     queryKey: ['user-profile'],
@@ -15,18 +15,20 @@ export const useFetchProfile = () => {
 export const useUpdateProfile = () => {
   const queryClient = useQueryClient()
   const { mutate, status } = useMutation({
-    mutationFn: ({ username, phoneNumber }) =>
+    mutationFn: ({ username, phoneNumber, address, state, bio }) =>
       customFetch.post('customer/profile/update', {
         name: username,
         phone: phoneNumber,
+        address,
+        state,
+        bio,
       }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['user-profile'] })
-      alert('Success')
     },
     onError: (error) => {
       console.log(error)
-      alert('error')
+      toast.error('Error editing profile')
     },
   })
   return { mutate, status }
@@ -37,7 +39,6 @@ export const useFetchBankInfo = () => {
     queryKey: ['bank-info'],
     queryFn: async () => {
       const { data } = await customFetch.get('customer/profile/bank')
-      alert(data.data)
       console.log(data.data.bank)
       return data.data.bank
     },
@@ -56,11 +57,10 @@ export const useUpdateBankInfo = () => {
       }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['bank-info'] })
-      alert('Success')
     },
     onError: (error) => {
       console.log(error)
-      alert('error')
+      toast.error('error')
     },
   })
   return { updateBankInfo, status }
@@ -76,12 +76,12 @@ export const useUpdateProfileImage = () => {
         },
       }),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['bank-info'] })
-      alert('Success')
+      queryClient.invalidateQueries({ queryKey: ['user-profile'] })
+      toast.success('Image uploaded successfully')
+      console.log(data)
     },
     onError: (error) => {
       console.log(error)
-      alert('error')
     },
   })
   return { updateProfileImage, status }

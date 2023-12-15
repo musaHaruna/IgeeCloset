@@ -13,7 +13,7 @@ const Wrapper = styled.main`
   }
 
   h4.text-green {
-   font-weight: 500;
+    font-weight: 500;
   }
   .upload-pic {
     position: absolute;
@@ -42,13 +42,11 @@ const Wrapper = styled.main`
     border: 4px solid #fff;
     z-index: 3;
   }
-
-  .camera {
-    position: absolute;
-    top: 70%;
+  .user-profile-img .upload-btn-wrapper-img .btn .camera {
     font-size: 30px;
     color: #fff;
     left: 6%;
+    cursor: pointer;
   }
 
   form {
@@ -94,6 +92,60 @@ const Wrapper = styled.main`
     background-color: #fff;
     border: 1px solid #f30505;
     color: #f30505;
+  }
+
+  .upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    cursor: point;
+  }
+
+  .upload-btn-wrapper-img {
+    position: absolute;
+    top: 4rem;
+    left: 2rem;
+    overflow: hidden;
+    display: inline-block;
+    cursor: point;
+  }
+
+  .btn {
+    color: gray;
+    background-color: transparent;
+    color: #292d32;
+    border-radius: 8px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .upload-btn-wrapper-img input[type='file'] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    cursor: point;
+  }
+
+  .upload-flex {
+    display: flex;
+    align-items: center;
+  }
+
+  .edit {
+    font-size: 28px;
+    display: flex;
+    justify-content: flex-end;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  .save-changes {
+    background-color: #56ac48;
+    color: #fff;
   }
 `
 

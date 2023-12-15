@@ -45,21 +45,19 @@ const Login = () => {
     resolver: yupResolver(schema),
   })
 
-  const { userLogin, isPending } = useUserLogin()
-  console.log(isPending)
+  const { userLogin, status } = useUserLogin()
 
   const onSubmit = (data) => {
     userLogin(data, {
       onSuccess: () => {
-        alert('Success')
+        handleCloseModal()
       },
       onError: () => {
-        alert('Error')
         return
       },
     })
-    isPending ? <h2>Loding</h2> : handleCloseModal()
   }
+
   return (
     <LoginWrapper>
       <Wrapper>
@@ -94,7 +92,11 @@ const Login = () => {
             </label>
           </div>
 
-          <button className='btn signin' type='submit'>
+          <button
+            className='btn signin'
+            type='submit'
+            disabled={status === 'pending' ? true : false}
+          >
             Sign In
           </button>
           <p onClick={handleOpenForgetPassword} className='forget-pword'>

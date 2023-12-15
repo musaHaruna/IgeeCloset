@@ -22,7 +22,7 @@ export const userSlice = createSlice({
     logoutUser: (state, action) => {
       state.user = null
       removeUserFromLocalStorage()
-      toast.success('Logging out user')
+      toast.success('Logged out succesfully')
     },
     openLoginModal: (state) => {
       state.isLoginModalOpen = true

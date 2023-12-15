@@ -137,7 +137,7 @@ export const useUserLogin = () => {
   const {
     data,
     mutate: userLogin,
-    isPending,
+    status,
   } = useMutation({
     mutationFn: ({ username, password }) =>
       customFetch.post(
@@ -159,10 +159,10 @@ export const useUserLogin = () => {
     },
     onError: (error) => {
       console.log(error.response.data.message)
-      alert('User not found or invalid credentials')
+      toast.error('User not found or invalid credentials')
       dispatch(openLoginModal())
       return
     },
   })
-  return { data, userLogin, isPending }
+  return { data, userLogin, status }
 }

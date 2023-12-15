@@ -4,6 +4,8 @@ import {
   useFetchBankInfo,
   useUpdateBankInfo,
 } from '../../../utils/usersDashBoardApi'
+import { toast } from 'react-toastify'
+import { CiEdit } from 'react-icons/ci'
 
 const BankInfo = () => {
   const [isEditable, setIsEditable] = useState(false)
@@ -35,10 +37,14 @@ const BankInfo = () => {
     e.preventDefault()
     console.log(formData)
     updateBankInfo({
-      name: 'Musa Haruna',
-      account_name: 'Access bank',
-      account_number: '11233413',
+      name: formData.name,
+      account_name: formData.account_name,
+      account_number: formData.account_number,
     })
+    if (isEditable === false) {
+      return
+    } else setIsEditable(false)
+    toast.success('Bank details successfully edited')
   }
   if (isLoading) {
     return <p style={{ marginTop: '1rem ' }}>Loading...</p>
@@ -53,6 +59,9 @@ const BankInfo = () => {
       <h4>Money made from selling your items will be sent here</h4>
       <form onSubmit={handleSumbit}>
         <div>
+          <div className='edit' onClick={handleEditButtonClick}>
+            <CiEdit />
+          </div>
           <label>Bank Name</label>
           <input
             type='text'
@@ -85,10 +94,9 @@ const BankInfo = () => {
             disabled={!isEditable}
           />
         </div>
-        <button type='button' onClick={handleEditButtonClick}>
-          Enable Editing
+        <button className='save-changes' type='submit'>
+          Save Changes
         </button>
-        <button type='submit'>Save Changes</button>
       </form>
     </Wrapper>
   )

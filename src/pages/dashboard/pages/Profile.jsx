@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react'
 import Wrapper from '../../../assets/css/Profile'
 import { ClosetBanner } from '../../../assets/images'
 import { AiOutlineCamera } from 'react-icons/ai'
+import { CiEdit } from 'react-icons/ci'
 import {
   useFetchProfile,
   useUpdateProfile,
   useUpdateProfileImage,
 } from '../../../utils/usersDashBoardApi'
-import customFetch from '../../../utils/axios'
+import { toast } from 'react-toastify'
 
 const Profile = () => {
   const [isEditable, setIsEditable] = useState(false)
@@ -16,29 +17,12 @@ const Profile = () => {
   }
 
   const [uploadFile, setUploadFile] = useState(null)
-
-  const handleFileChange = (e) => {
-    setUploadFile(e.target.files[0])
-  }
+  console.log(uploadFile)
 
   const { updateProfileImage } = useUpdateProfileImage()
 
-  const handleImageSubmit = () => {
-    const formData = new FormData()
-
-    // Append additional properties
-    formData.append('type', 'image')
-    formData.append('description', 'Profile picture')
-
-    // Append the file
-    formData.append('file', uploadFile)
-
-    console.log('FormData:', formData)
-
-    updateProfileImage({ formData })
-  }
-  const handleUpload = async () => {
-    try {
+  useEffect(() => {
+    if (uploadFile) {
       const formData = new FormData()
 
       // Append additional properties
@@ -50,23 +34,12 @@ const Profile = () => {
 
       console.log('FormData:', formData)
 
-      const response = await customFetch.post(
-        'customer/profile/update-image',
-        formData,
-        {
-          headers: {
-            'Custom-Headers': 'value',
-            'Content-Type': 'multipart/form-data',
-          },
-        }
-      )
-
-      console.log('File uploaded:', response)
-      // You can add additional logic here, such as displaying a success message.
-    } catch (error) {
-      console.error('Error uploading file:', error)
-      // You can handle errors and display error messages here.
+      updateProfileImage({ formData })
     }
+  }, [uploadFile])
+
+  const handleFileChange = (e) => {
+    setUploadFile(e.target.files[0])
   }
 
   const handleSaveButtonClick = () => {
@@ -78,6 +51,8 @@ const Profile = () => {
   useEffect(() => {
     setFormData(data)
   }, [data])
+
+  console.log(data)
 
   const [formData, setFormData] = useState({})
 
@@ -105,7 +80,17 @@ const Profile = () => {
   const handleSumbit = (e) => {
     e.preventDefault()
     console.log(formData)
-    mutate({ username: 'musa', phoneNumber: '123' })
+    mutate({
+      username: formData.name,
+      phoneNumber: formData.phone,
+      address: formData.address,
+      state: formData.state,
+      bio: formData.bio,
+    })
+    if (isEditable === false) {
+      return
+    } else setIsEditable(false)
+    toast.success('Profile successfully edited')
   }
 
   return (
@@ -113,18 +98,32 @@ const Profile = () => {
       <article className='user-banner'>
         <div className='banner'>
           <AiOutlineCamera className='upload-pic' />
-          <img src={ClosetBanner} alt='' />
+          <img src={formData.image} alt='' />
         </div>
         <div className='user-profile-img'>
-          <img src={ClosetBanner} alt='' />
-          <div>
+          <img src={formData?.image} alt='' />
+          {/* <div>
             <input type='file' onChange={handleFileChange} />
             <button onClick={handleUpload}>Upload</button>
             <AiOutlineCamera className='camera' />
+          </div> */}
+          <div class='upload-btn-wrapper-img'>
+            <button class='btn'>
+              <AiOutlineCamera className='camera' />
+            </button>
+            <input type='file' onChange={handleFileChange} name='myfile' />
           </div>
         </div>
       </article>
-      <h4 className='text-green'>User information</h4>
+      <div className='upload-flex'>
+        <h4 className='text-green'>User information</h4>
+        <div class=''>
+          <button class='btn' onClick={handleEditButtonClick}>
+            <CiEdit />
+          </button>
+        </div>
+      </div>
+
       <article>
         <form onSubmit={handleSumbit}>
           <div>
@@ -205,9 +204,6 @@ const Profile = () => {
               disabled={!isEditable}
             ></textarea>
           </div>
-          <button type='button' onClick={handleEditButtonClick}>
-            Enable Editing
-          </button>
           <button type='submit' className='btn-green'>
             Save
           </button>
