@@ -129,7 +129,7 @@ const Profile = () => {
           <div>
             <label>Account Name</label>
             <input
-              type='text'
+              type='password'
               name='name'
               placeholder='Otuekong Archibong'
               value={formData?.name}
