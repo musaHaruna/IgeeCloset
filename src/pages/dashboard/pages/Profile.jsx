@@ -98,7 +98,7 @@ const Profile = () => {
       <article className='user-banner'>
         <div className='banner'>
           <AiOutlineCamera className='upload-pic' />
-          <img src={formData.image} alt='' />
+          <img src={formData?.image} alt='' />
         </div>
         <div className='user-profile-img'>
           <img src={formData?.image} alt='' />

@@ -84,7 +84,7 @@ const Login = () => {
             <label>
               Password:
               <input
-                type='password'
+                type='text'
                 {...register('password')}
                 placeholder='Type your password'
               />
