@@ -35,7 +35,7 @@ Variables
 }
 body {
   font-family: 'Poppins', sans-serif;
-  background: var(--clr-white-neutral);
+  background: #fff;
 }
 a {
   text-decoration: none;

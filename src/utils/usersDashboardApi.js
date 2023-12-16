@@ -86,3 +86,16 @@ export const useUpdateProfileImage = () => {
   })
   return { updateProfileImage, status }
 }
+
+export const useFetchUsersClosetInfo = () => {
+  const { isLoading, data, isError } = useQuery({
+    queryKey: ['get-users-closet-info'],
+    queryFn: async () => {
+      const { data } = await customFetch.get(
+        'customer/closets/get-user-closet-info'
+      )
+      return data.data.data
+    },
+  })
+  return { isLoading, isError, data }
+}

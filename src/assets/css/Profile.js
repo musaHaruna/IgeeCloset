@@ -101,6 +101,8 @@ const Wrapper = styled.main`
     cursor: point;
   }
 
+  
+
   .upload-btn-wrapper-img {
     position: absolute;
     top: 4rem;

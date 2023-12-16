@@ -23,6 +23,7 @@ const Login = () => {
   const dispatch = useDispatch()
   const handleCloseModal = () => {
     dispatch(closeLoginModal())
+    document.body.style.overflowY = 'scroll'
   }
 
   const [openForgetPassword, setOpenForgetPassword] = useState(false)
@@ -84,7 +85,7 @@ const Login = () => {
             <label>
               Password:
               <input
-                type='text'
+                type='password'
                 {...register('password')}
                 placeholder='Type your password'
               />

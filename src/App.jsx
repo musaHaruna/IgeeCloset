@@ -9,6 +9,7 @@ import {
   ProtectedRoute,
   SingleCloset,
   WomenCategory,
+  SellOnIgeeCloset,
 } from './pages/Index'
 import {
   BankInfo,
@@ -37,6 +38,14 @@ function App() {
 
           <Route path='faq' element={<FAQ />} />
           <Route path='*' element={<Error />} />
+          <Route
+            path='sell-on-igee-closet'
+            element={
+              <ProtectedRoute>
+                <SellOnIgeeCloset />
+              </ProtectedRoute>
+            }
+          ></Route>
         </Route>
         <Route
           path='user'

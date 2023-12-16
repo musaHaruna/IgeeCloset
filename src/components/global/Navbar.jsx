@@ -32,6 +32,7 @@ const Navbar = () => {
 
   const handleOpenModal = () => {
     dispatch(openSignUpModal())
+    document.body.style.overflow = 'hidden'
   }
   const handleOpenMLoginodal = () => {
     dispatch(openLoginModal())
