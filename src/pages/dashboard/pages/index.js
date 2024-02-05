@@ -5,6 +5,7 @@ import Purchases from './Purchases'
 import Profile from './Profile'
 import UserCloset from './UserCloset'
 import Offers from './Offers'
+import DeliveryAddress from './DeliveryAddress'
 export {
   SharedDashboardLayout,
   Offers,
@@ -13,4 +14,6 @@ export {
   Purchases,
   UserCloset,
   BankInfo,
+  DeliveryAddress
 }
+

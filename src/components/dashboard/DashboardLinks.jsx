@@ -10,7 +10,7 @@ const DashboardLinks = () => {
   }
 
   return (
-    <section>
+    <section className='sidebar'>
       <div className='sidebar-links'>
         <div className='profile-container'>
           <div className='profile-img'>
@@ -38,6 +38,15 @@ const DashboardLinks = () => {
             </div>
           )
         })}
+        <div className='nav-link margin'>
+          <Link
+            onClick={() => handleTabClick(7)}
+            className={`${activeTab === 7 ? 'active' : 'inactive'}`}
+            to={'delivery-address'}
+          >
+            Delivery Address
+          </Link>
+        </div>
       </div>
     </section>
   )

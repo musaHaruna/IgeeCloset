@@ -13,6 +13,7 @@ import {
 } from './pages/Index'
 import {
   BankInfo,
+  DeliveryAddress,
   Notifications,
   Offers,
   Profile,
@@ -61,6 +62,7 @@ function App() {
           <Route path='bank-information' element={<BankInfo />} />
           <Route path='offer' element={<Offers />} />
           <Route path='closet' element={<UserCloset />} />
+          <Route path='delivery-address' element={<DeliveryAddress />} />
         </Route>
       </Routes>
       <ToastContainer position='top-center' />
