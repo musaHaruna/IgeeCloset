@@ -2,6 +2,7 @@ import { ClosetHero2, MenCate, WomenCate } from '../assets/images'
 import Wrapper from '../assets/css/Explore'
 import { singleClosetItem } from '../utils/data'
 import { SingleClosetItem } from '../components/website'
+import { Link } from 'react-router-dom'
 
 const Explore = () => {
   return (
@@ -23,7 +24,9 @@ const Explore = () => {
 
               <div className='cta-btns'>
                 <button className='btn-green'>Buy</button>
-                <button className='btn-white'>Sell</button>
+                <Link className='btn-white' to={'/sell-on-igee-closet'}>
+                  Sell
+                </Link>
               </div>
             </div>
           </div>

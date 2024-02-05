@@ -26,7 +26,9 @@ const Home = () => {
           </p>
           <div className='cta-btns'>
             <Link className='cta-green-shadow'>Buy</Link>
-            <Link className='cta-green-outline-flat'>Sell</Link>
+            <Link className='cta-green-outline-flat' to={'/sell-on-igee-closet'}>
+              Sell
+            </Link>
           </div>
         </section>
         <section className='container carousel'>
