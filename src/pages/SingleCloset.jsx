@@ -5,6 +5,7 @@ import { ClosetBanner, ClosetImg } from '../assets/images'
 import { CiLocationOn, CiSearch } from 'react-icons/ci'
 import { singleClosetItem } from '../utils/data'
 import { SingleClosetItem } from '../components/website'
+import { Link } from 'react-router-dom'
 
 const SingleCloset = () => {
   //const { id } = useParams()
@@ -113,7 +114,9 @@ const SingleCloset = () => {
       </section>
       <section className='closet-cards'>
         {singleClosetItem.map((item, index) => (
-          <SingleClosetItem key={index} item={item} />
+          <Link className='link' to={'/closet/product'}>
+            <SingleClosetItem key={index} item={item} />
+          </Link>
         ))}
       </section>
     </Wrapper>

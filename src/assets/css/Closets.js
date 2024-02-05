@@ -11,6 +11,8 @@ const Wrapper = styled.main`
 
   img {
   }
+
+  
   .content-container {
     position: absolute;
     display: flex;
@@ -127,7 +129,7 @@ const Wrapper = styled.main`
     border-radius: 16px;
   }
 
-  .all-igee{
+  .all-igee {
     margin-bottom: 3rem;
   }
 `

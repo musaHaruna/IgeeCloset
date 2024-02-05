@@ -8,6 +8,7 @@ import { RiFlag2Line } from 'react-icons/ri'
 import { singleClosetItem } from '../utils/data'
 import RelatedProducts from '../components/website/RelatedProducts'
 
+
 const ProductDetail = () => {
   return (
     <Wrapper>

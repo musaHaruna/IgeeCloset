@@ -5,8 +5,24 @@ const Wrapper = styled.main`
     position: relative;
     overflow: hidden;
     border-radius: 25px;
-    height: 500px;
+    height: 450px;
     background-color: rgba(0, 0, 0, 1);
+  }
+
+  .bg-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(
+      0,
+      0,
+      0,
+      0.5
+    ); /* Adjust the alpha value for transparency */
+    /* Ensure the overlay is below other content inside .bg-wrapper */
   }
 
   .content-container {
@@ -17,6 +33,7 @@ const Wrapper = styled.main`
     width: 100%;
     align-items: center;
     justify-content: center;
+    z-index:  10;
   }
 
   .content p {
@@ -155,6 +172,12 @@ const Wrapper = styled.main`
     object-fit: cover;
   }
 
+  .img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
   .categories div h3 {
     position: absolute;
     top: 0;
@@ -177,6 +200,11 @@ const Wrapper = styled.main`
 
   .product-desc p {
     text-align: left;
+  }
+
+  .links {
+    display: block;
+    color: #121212;
   }
 `
 

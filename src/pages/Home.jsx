@@ -26,7 +26,10 @@ const Home = () => {
           </p>
           <div className='cta-btns'>
             <Link className='cta-green-shadow'>Buy</Link>
-            <Link className='cta-green-outline-flat' to={'/sell-on-igee-closet'}>
+            <Link
+              className='cta-green-outline-flat'
+              to={'/sell-on-igee-closet'}
+            >
               Sell
             </Link>
           </div>
@@ -88,7 +91,7 @@ const Home = () => {
             <section className='closet-cards'>
               {closetCard.map((item, index) => (
                 <Link to={`/closet/${item.id}`}>
-                  <ClosetCard key={index} item={item} />
+                  <ClissosetCard key={index} item={item} />
                 </Link>
               ))}
             </section>

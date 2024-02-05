@@ -10,9 +10,8 @@ const Explore = () => {
       <article className='container'>
         <section className=''>
           <div className='bg-wrapper'>
-            <div>
-              <img src={ClosetHero2} alt='' />
-            </div>
+            <img className='img' src={ClosetHero2} alt='' />
+
             <div className='content-container'>
               <div className='content'>
                 <h2 className=''>
@@ -57,7 +56,9 @@ const Explore = () => {
         </section>
         <section className='closet-cards'>
           {singleClosetItem.map((item, index) => (
-            <SingleClosetItem key={index} item={item} />
+            <Link className='links' to={'/closet/product'}>
+              <SingleClosetItem key={index} item={item} />
+            </Link>
           ))}
         </section>
       </article>

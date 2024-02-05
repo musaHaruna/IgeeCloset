@@ -33,7 +33,7 @@ const Closet = () => {
         </p>
         <section className='closets-container'>
           {popularCloset.map((item, index) => (
-            <Link>
+            <Link to={`/closet/${index}`}>
               <PopularClosetCard key={index} item={item} />
             </Link>
           ))}
@@ -43,7 +43,7 @@ const Closet = () => {
         </p>
         <section className='closets-container'>
           {popularCloset.map((item, index) => (
-            <Link>
+            <Link to={`/closet/${index}`}>
               <PopularClosetCard key={index} item={item} />
             </Link>
           ))}
@@ -53,7 +53,7 @@ const Closet = () => {
         </p>
         <section className='closets-container all-igee'>
           {popularCloset.map((item, index) => (
-            <Link>
+            <Link Link to={`/closet/${index}`}>
               <PopularClosetCard key={index} item={item} />
             </Link>
           ))}

@@ -15,6 +15,10 @@ const Wrapper = styled.main`
     height: 200px;
     margin: 1rem auto;
   }
+
+  .link {
+    color: #121212;
+  }
   .container {
     width: 100%;
   }
