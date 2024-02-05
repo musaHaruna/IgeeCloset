@@ -67,6 +67,7 @@ const Wrapper = styled.main`
     padding: 0.5rem 2rem;
     background-color: #56ac48;
     color: #fff;
+    margin: 1rem 0;
     border-radius: 8px;
   }
 
@@ -143,7 +144,7 @@ const Wrapper = styled.main`
     border-bottom: 1px solid #56ac48;
   }
 
-  .purchase-img {
+  .purchase-img.modal {
     margin: 1rem auto;
   }
 

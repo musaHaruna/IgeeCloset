@@ -35,7 +35,7 @@ const OfferModal = ({ isOpen, closeModal, modalContent }) => {
       <div style={modalContentStyle}>
         <p className='heading'>Offer</p>
         <div className='modal-content'>
-          <img src={PurchaseImg} alt='' className='purchase-img' />
+          <img src={PurchaseImg} alt='' className='purchase-img modal' />
           <h3>Black Regular Keratose T-Shirt1x</h3>
           <p>Amount Offering</p>
           <p className='offer-amount'>
