@@ -5,7 +5,7 @@ const Wrapper = styled.main`
     position: relative;
     overflow: hidden;
     border-radius: 25px;
-    height: 450px;
+    height: 400px;
     background-color: rgba(0, 0, 0, 1);
   }
 

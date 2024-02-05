@@ -91,7 +91,7 @@ const Home = () => {
             <section className='closet-cards'>
               {closetCard.map((item, index) => (
                 <Link to={`/closet/${item.id}`}>
-                  <ClissosetCard key={index} item={item} />
+                  <ClosetCard key={index} item={item} />
                 </Link>
               ))}
             </section>
