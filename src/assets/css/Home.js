@@ -16,7 +16,7 @@ const Wrapper = styled.article`
   }
 
   .cta-btns {
-    display: flex; 
+    display: flex;
     justify-content: center;
     gap: 1.5rem;
     margin: 1.5rem 0;
@@ -149,6 +149,12 @@ const Wrapper = styled.article`
     width: 80%;
   }
 
+  .img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+
   .ads .content .text p .text-green {
     text-decoration: underline;
   }
@@ -190,7 +196,8 @@ const Wrapper = styled.article`
     display: grid;
     grid-template-columns: 1fr 1fr;
     justify-content: center;
-    width: 95%;
+    width: 90%;
+
     margin: 1rem auto;
     gap: 1.5rem;
   }
@@ -202,14 +209,20 @@ const Wrapper = styled.article`
     justify-self: center;
     cursor: pointer;
     height: 550px;
-
   }
 
   .profile-img {
     width: 60px;
+    height: 60px;
     border-radius: 50%;
     overflow: hidden;
     border: 2px solid var(--clr-white);
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
   }
 
   .closet-card-info {

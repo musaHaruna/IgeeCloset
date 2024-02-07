@@ -1,16 +1,33 @@
 import { ClosetHero2, MenCate, WomenCate } from '../assets/images'
 import Wrapper from '../assets/css/Explore'
-import { singleClosetItem } from '../utils/data'
 import { SingleClosetItem } from '../components/website'
 import { Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { useFetchAllItems } from '../utils/websiteApi'
 
 const Explore = () => {
+  const [currentPage, setCurrentPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(1)
+  const [products, setProducts] = useState([])
+
+  const { isLoading, isError, data } = useFetchAllItems(currentPage)
+  console.log(products)
+
+  useEffect(() => {
+    // Fetch data using Axios or your preferred method
+    setProducts(data)
+  }, [data, currentPage])
+
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage)
+  }
+
   return (
     <Wrapper>
       <article className='container'>
         <section className=''>
           <div className='bg-wrapper'>
-            <img className='img' src={ClosetHero2} alt='' />
+            <img classNa me='img' src={ClosetHero2} alt='' />
 
             <div className='content-container'>
               <div className='content'>
@@ -54,13 +71,42 @@ const Explore = () => {
           <h2>Trending</h2>
           <p>2000 Products avaliable</p>
         </section>
+
         <section className='closet-cards'>
-          {singleClosetItem.map((item, index) => (
-            <Link className='links' to={'/closet/product'}>
-              <SingleClosetItem key={index} item={item} />
-            </Link>
+          {products?.data?.data.map((item, index) => (
+            // Adjust this part based on your requirements
+            <div className='links' key={index}>
+              <SingleClosetItem item={item} />
+            </div>
           ))}
         </section>
+        {/* Render pagination controls */}
+        <div className='paginate'>
+          <button
+            disabled={currentPage === 1}
+            onClick={() => handlePageChange(currentPage - 1)}
+          >
+            Previous
+          </button>
+
+          {/* Display page numbers as links */}
+          {Array.from({ length: totalPages }, (_, index) => (
+            <button
+              key={index + 1}
+              onClick={() => handlePageChange(index + 1)}
+              disabled={currentPage === index + 1}
+            >
+              {index + 1}
+            </button>
+          ))}
+
+          <button
+            disabled={currentPage === totalPages}
+            onClick={() => handlePageChange(currentPage + 1)}
+          >
+            Next
+          </button>
+        </div>
       </article>
     </Wrapper>
   )

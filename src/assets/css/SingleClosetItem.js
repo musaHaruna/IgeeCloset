@@ -23,6 +23,10 @@ const Wrapper = styled.div`
     margin: 0.5rem 0;
   }
 
+  .product-desc h3 {
+    font-weight: 500;
+  }
+
   .size {
     font-size: 12px;
   }

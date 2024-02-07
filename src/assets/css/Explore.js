@@ -33,7 +33,7 @@ const Wrapper = styled.main`
     width: 100%;
     align-items: center;
     justify-content: center;
-    z-index:  10;
+    z-index: 10;
   }
 
   .content p {
@@ -205,6 +205,12 @@ const Wrapper = styled.main`
   .links {
     display: block;
     color: #121212;
+  }
+
+  .paginate {
+    display: flex;
+    justify-content: space-between;
+    margin: 4rem auto;
   }
 `
 

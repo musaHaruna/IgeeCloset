@@ -5,14 +5,19 @@ import { AdLady, HeroImg1, Story, JoinUs } from '../assets/images'
 import { howItWorks, closetCard, faqData } from '../utils/data'
 import { ClosetCard, GetStartedCard } from '../components/website'
 import { PiArrowUpRight } from 'react-icons/pi'
+import { useFetchAllCloset } from '../utils/websiteApi'
 
 const Home = () => {
   const [activeIndex, setActiveIndex] = useState(null)
+  const { isLoading, isError, data } = useFetchAllCloset()
+  const closets = data?.data.closets
+  console.log(closets)
 
   // Function to toggle the active FAQ item
   const toggleItem = (index) => {
     setActiveIndex(activeIndex === index ? null : index)
   }
+
   return (
     <Wrapper>
       <article>
@@ -89,7 +94,7 @@ const Home = () => {
             </p>
 
             <section className='closet-cards'>
-              {closetCard.map((item, index) => (
+              {closets?.map((item, index) => (
                 <Link to={`/closet/${item.id}`}>
                   <ClosetCard key={index} item={item} />
                 </Link>
