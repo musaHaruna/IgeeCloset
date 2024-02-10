@@ -57,14 +57,14 @@ const Explore = () => {
         </section>
 
         <section className='categories'>
-          <div>
+          <Link className='category-card' to={'/closet/women'}>
             <img src={WomenCate} alt='' />
             <h3>Women</h3>
-          </div>
-          <div>
+          </Link>
+          <Link className='category-card' to={'/closet/men'}>
             <img src={MenCate} alt='' />
             <h3>Men</h3>
-          </div>
+          </Link>
         </section>
 
         <section className='category-head'>

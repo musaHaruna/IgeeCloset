@@ -9,6 +9,7 @@ import {
   ProtectedRoute,
   SingleCloset,
   WomenCategory,
+  MenCategory,
   SellOnIgeeCloset,
 } from './pages/Index'
 import {
@@ -34,6 +35,7 @@ function App() {
           <Route path='explore' element={<Explore />} />
           <Route path='closet' element={<Closet />} />
           <Route path='closet/women' element={<WomenCategory />} />
+          <Route path='closet/men' element={<MenCategory />} />
           <Route path='closet/product' element={<ProductDetail />} />
           <Route path='closet/:id' element={<SingleCloset />} />
 
@@ -71,4 +73,3 @@ function App() {
 }
 
 export default App
- 

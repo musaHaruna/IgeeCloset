@@ -6,7 +6,6 @@ const Wrapper = styled.main`
     overflow: hidden;
     border-radius: 25px;
     height: 400px;
-    background-color: rgba(0, 0, 0, 1);
   }
 
   .bg-wrapper::before {
@@ -23,6 +22,32 @@ const Wrapper = styled.main`
       0.5
     ); /* Adjust the alpha value for transparency */
     /* Ensure the overlay is below other content inside .bg-wrapper */
+  }
+
+  .category-card {
+    position: relative;
+    display: block;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    height: 230px;
+    border-radius: 20px;
+  }
+
+  .category-card img {
+    position: relative;
+    z-index: -1;
+  }
+
+  .category-card h3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+
+    font-size: 34px;
+    color: #ffff;
+    transform: translate(-50%, -50%);
   }
 
   .content-container {

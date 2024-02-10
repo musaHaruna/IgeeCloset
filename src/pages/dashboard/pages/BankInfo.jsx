@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import {
   useFetchBankInfo,
   useUpdateBankInfo,
-} from '../../../utils/usersDashBoardApi'
+} from '../../../utils/usersDashboardApi'
 import { toast } from 'react-toastify'
 import { CiEdit } from 'react-icons/ci'
 

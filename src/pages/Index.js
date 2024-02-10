@@ -9,6 +9,7 @@ import SingleCloset from './SingleCloset'
 import ProtectedRoute from './ProtectedRoute'
 import ProductDetail from './ProductDetail'
 import SellOnIgeeCloset from './SellOnIgeeCloset'
+import MenCategory from './MenCategory'
 
 export {
   Landing,
@@ -22,4 +23,5 @@ export {
   WomenCategory,
   ProductDetail,
   SellOnIgeeCloset,
+  MenCategory,
 }

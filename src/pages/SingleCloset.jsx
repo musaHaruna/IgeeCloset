@@ -1,15 +1,35 @@
 import { useState } from 'react'
 import Wrapper from '../assets/css/Closet'
-//import { useParams } from 'react-router-dom'
 import { ClosetBanner, ClosetImg } from '../assets/images'
 import { CiLocationOn, CiSearch } from 'react-icons/ci'
 import { singleClosetItem } from '../utils/data'
 import { SingleClosetItem } from '../components/website'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import {
+  useFetchAllItemsByClosetId,
+  useFollowCloset,
+  useUnFollowCloset,
+} from '../utils/websiteApi'
 
 const SingleCloset = () => {
-  //const { id } = useParams()
+  const { id } = useParams()
+  const closetId = id
+  const { isLoading, isError, data } = useFetchAllItemsByClosetId(closetId)
+  const closetItems = data?.data.items
 
+  const { followCloset, status } = useFollowCloset()
+  const { unfollowCloset } = useUnFollowCloset()
+  const [isFollowing, setIsFollowing] = useState(false)
+
+  const handleFollowAndUnfollow = () => {
+    if (isFollowing) {
+      unfollowCloset({ id: 1 })
+    } else {
+      followCloset({ id: 1 })
+    }
+    setIsFollowing(!isFollowing) // Toggle the follow state
+  }
   const [selectedValue, setSelectedValue] = useState('')
 
   const options = [
@@ -63,7 +83,9 @@ const SingleCloset = () => {
               <h4>32</h4>
               <p>Following</p>
             </div>
-            <button className='follow'>Follow</button>
+            <button className='follow' onClick={handleFollowAndUnfollow}>
+              {isFollowing ? 'Unfollow' : 'Follow'}
+            </button>
             <div className='search'>
               <CiSearch className='icon' />
               <input type='text' placeholder='Search closets' />
@@ -113,7 +135,7 @@ const SingleCloset = () => {
         </div>
       </section>
       <section className='closet-cards'>
-        {singleClosetItem.map((item, index) => (
+        {closetItems?.map((item, index) => (
           <Link className='link' to={'/closet/product'}>
             <SingleClosetItem key={index} item={item} />
           </Link>

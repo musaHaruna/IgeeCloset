@@ -13,7 +13,7 @@ const SingleClosetItem = ({ item }) => {
         </div>
         <div className='product-desc'>
           <h3>{item.title}</h3>
-          <p>{item.price}</p>
+          <p>NGN {item.price}</p>
           <p className='size'>
             {item.size} | <span className='text-green'> @MaryCloset</span>
           </p>

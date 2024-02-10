@@ -11,20 +11,19 @@ import {
   useFetchAllItemsByCategory,
 } from '../utils/websiteApi'
 
-const WomenCategory = () => {
+const MenCategory = () => {
   const { isLoading, isError, data } = useFetchAllCloset()
 
   const { categoryLoading, categoryError, items } =
-    useFetchAllItemsByCategory(1)
+    useFetchAllItemsByCategory(2)
   const closets = data?.data.closets
   const categoryItems = items?.data.items
-
   return (
     <Wrapper>
       <article className='container'>
         <section className=''>
           <div className='bg-wrapper'>
-            <div className='hero-img'>
+            <div>
               <img src={ClosetHero2} alt='' />
             </div>
             <div className='content-container'>
@@ -53,7 +52,7 @@ const WomenCategory = () => {
             <MdArrowForwardIos />
           </p>
           <p>
-            Women <MdArrowForwardIos />
+            Men <MdArrowForwardIos />
           </p>
         </section>
 
@@ -95,4 +94,4 @@ const WomenCategory = () => {
   )
 }
 
-export default WomenCategory
+export default MenCategory

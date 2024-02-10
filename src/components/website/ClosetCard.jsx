@@ -1,7 +1,10 @@
 import React from 'react'
 import { ClosetImg } from '../../assets/images'
+import { useFetchAllItemsByClosetId } from '../../utils/websiteApi'
 
 const ClosetCard = ({ item }) => {
+  
+
   return (
     <div className='closet-card'>
       <img

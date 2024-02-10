@@ -4,7 +4,7 @@ import {
   useFetchAllCloset,
   useFetchAllItems,
   useFetchAllItemsByCategory,
-  useFetchAllItemsByCloset,
+  useFetchAllItemsByClosetId,
 } from '../utils/websiteApi'
 
 const Error = () => {

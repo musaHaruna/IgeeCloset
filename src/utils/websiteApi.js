@@ -45,29 +45,33 @@ export const useFetchAllItems = (id) => {
   return { isLoading, isError, data }
 }
 
-export const useFetchAllItemsByCloset = (id) => {
+export const useFetchAllItemsByClosetId = (id) => {
   const { isLoading, data, isError } = useQuery({
-    queryKey: [''],
+    queryKey: ['closet-id'],
     queryFn: async () => {
       const { data } = await customFetch.get(
         `customer/closets/get-items-by-closet?closet_id=${id}`
       )
-      return data.data.data
+      return data
     },
   })
   return { isLoading, isError, data }
 }
 export const useFetchAllItemsByCategory = (id) => {
-  const { isLoading, data, isError } = useQuery({
+  const {
+    isLoading: categoryLoading,
+    data: items,
+    isError: categoryError,
+  } = useQuery({
     queryKey: [''],
     queryFn: async () => {
       const { data } = await customFetch.get(
         `customer/items/get-items-by-category?category_id=${id}`
       )
-      return data.data.data
+      return data
     },
   })
-  return { isLoading, isError, data }
+  return { categoryLoading, categoryError, items }
 }
 
 export const useFetcSingleItem = (id) => {
@@ -81,4 +85,89 @@ export const useFetcSingleItem = (id) => {
     },
   })
   return { isLoading, isError, data }
+}
+
+export const useFollowCloset = () => {
+  const queryClient = useQueryClient()
+  const { mutate: followCloset, status } = useMutation({
+    mutationFn: ({ id }) =>
+      customFetch.post(
+        `customer/follow?customer_id=${id}`,
+        {},
+        { params: { id } }
+      ),
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ['follow'] })
+      console.log(data.data.data.message)
+      toast.success(data.data.data.message)
+    },
+    onError: (error) => {
+      console.log(error)
+      toast.error('error')
+    },
+  })
+  return { followCloset, status }
+}
+export const useUnFollowCloset = () => {
+  const queryClient = useQueryClient()
+  const { mutate: unfollowCloset, status } = useMutation({
+    mutationFn: ({ id }) =>
+      customFetch.post(
+        `customer/unfollow?customer_id=${id}`,
+        {},
+        { params: { id } }
+      ),
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ['unfollow'] })
+      console.log(data.data.data.message)
+      toast.success(data.data.data.message)
+    },
+    onError: (error) => {
+      console.log(error)
+      toast.error('error')
+    },
+  })
+  return { unfollowCloset, status }
+}
+export const useLikeItem = () => {
+  const queryClient = useQueryClient()
+  const { mutate: likeItem, status } = useMutation({
+    mutationFn: ({ id }) =>
+      customFetch.post(`customer/like?item_id=${id}`, {}, { params: { id } }),
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ['likw'] })
+      console.log(data.data.data.message)
+      toast.success(data.data.data.message)
+    },
+    onError: (error) => {
+      console.log(error)
+      toast.error('error')
+    },
+  })
+  return { likeItem, status }
+}
+export const useUnLikeItem = (id) => {
+  const queryClient = useQueryClient()
+  const { mutate: unLikeItem, status } = useMutation({
+    mutationFn: ({ id }) =>
+      customFetch.post(
+        `customer/unlike?item_id=${id}`,
+        {},
+        {
+          params: {
+            id,
+          },
+        }
+      ),
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ['unlike'] })
+      console.log(data.data.data.message)
+      toast.success(data.data.data.message)
+    },
+    onError: (error) => {
+      console.log(error)
+      toast.error('error')
+    },
+  })
+  return { unLikeItem, status }
 }
