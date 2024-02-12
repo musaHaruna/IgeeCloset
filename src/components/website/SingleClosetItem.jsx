@@ -1,10 +1,24 @@
-import React from 'react'
+import { useState } from 'react'
 import { CiHeart, CiShare2 } from 'react-icons/ci'
 import { AiOutlineLike } from 'react-icons/ai'
 import Wrapper from '../../assets/css/SingleClosetItem'
 import { ClosetImg } from '../../assets/images'
+import { useLikeItem, useUnLikeItem } from '../../utils/websiteApi'
 Wrapper
 const SingleClosetItem = ({ item }) => {
+  const { likeItem } = useLikeItem()
+  const { unLikeItem } = useUnLikeItem()
+  const [isLike, setIsLike] = useState(false)
+
+  console.log(item.id)
+  const handleLikeAndUnlike = () => {
+    if (!isLike) {
+      likeItem({ id: item.id.toString() })
+    } else {
+      unLikeItem({ id: item.id.toString() })
+    }
+    setIsLike(!isLike) // Toggle the follow state
+  }
   return (
     <Wrapper>
       <div className='closet-card category'>
@@ -23,7 +37,10 @@ const SingleClosetItem = ({ item }) => {
             <CiHeart /> <span>23</span>
           </div>
           <div>
-            <AiOutlineLike />
+            <AiOutlineLike
+              onClick={handleLikeAndUnlike}
+              style={{ color: isLike ? 'green' : 'inherit' }}
+            />
             <span>21</span>
           </div>
           <div>
