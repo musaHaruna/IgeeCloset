@@ -5,7 +5,8 @@ import { AdLady, HeroImg1, Story, JoinUs } from '../assets/images'
 import { howItWorks, closetCard, faqData } from '../utils/data'
 import { ClosetCard, GetStartedCard } from '../components/website'
 import { PiArrowUpRight } from 'react-icons/pi'
-import { useFetchAllCloset } from '../utils/websiteApi'
+import { useFetchAllCloset } from  "../utils/websiteApi"
+import { RotatingLines } from 'react-loader-spinner'
 
 const Home = () => {
   const [activeIndex, setActiveIndex] = useState(null)
@@ -92,6 +93,16 @@ const Home = () => {
             <p className='text-green'>
               Find unique items that fit your current style
             </p>
+            {isLoading && (
+              <div className='loader-spinner'>
+                <RotatingLines
+                  type='Oval'
+                  style={{ color: '#FFF' }}
+                  height={100}
+                  width={100}
+                />
+              </div>
+            )}
 
             <section className='closet-cards'>
               {closets?.map((item, index) => (

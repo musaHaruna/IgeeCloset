@@ -136,9 +136,9 @@ const SingleCloset = () => {
       </section>
       <section className='closet-cards'>
         {closetItems?.map((item, index) => (
-          <Link className='link' to={'/closet/product'}>
+          <div className='link'>
             <SingleClosetItem key={index} item={item} />
-          </Link>
+          </div>
         ))}
       </section>
     </Wrapper>

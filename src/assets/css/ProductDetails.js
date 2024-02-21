@@ -6,11 +6,25 @@ const Wrapper = styled.main`
   margin: 2rem auto;
 
   .product-container {
-    height: 730px;
+    height: 700px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
     border-bottom: 1px solid #d5d6de;
+  }
+
+  .reply-comment {
+    cursor: pointer;
+  }
+  .comment-box {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .comment-box input {
+    width: 250px;
+    height: 60px;
   }
 
   .links {
@@ -142,6 +156,7 @@ const Wrapper = styled.main`
     display: grid;
     grid-template-columns: 0.3fr 1fr;
     gap: 1rem;
+    height: 40px;
   }
 
   .product-img div div {

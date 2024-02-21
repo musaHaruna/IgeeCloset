@@ -75,7 +75,7 @@ export const useUpdateProfileImage = () => {
           'Content-Type': 'multipart/form-data',
         },
       }),
-    onSuccess: () => {
+    onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['user-profile'] })
       toast.success('Image uploaded successfully')
       console.log(data)
@@ -85,6 +85,32 @@ export const useUpdateProfileImage = () => {
     },
   })
   return { updateProfileImage, status }
+}
+export const useUploadImage = () => {
+  const queryClient = useQueryClient()
+  const {
+    data,
+    mutate: uploadImage,
+    status,
+  } = useMutation({
+    mutationFn: ({ formData }) =>
+      customFetch.post('customer/items/upload-image', formData, {
+        headers: {
+          'Custom-Headers': 'value',
+          'Content-Type': 'multipart/form-data',
+        },
+      }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['user-profile'] })
+      toast.success('Image uploaded successfully')
+      console.log(data)
+      return data
+    },
+    onError: (error) => {
+      console.log(error)
+    },
+  })
+  return { uploadImage, status, data }
 }
 
 export const useFetchUsersClosetInfo = () => {

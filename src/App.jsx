@@ -36,7 +36,7 @@ function App() {
           <Route path='closet' element={<Closet />} />
           <Route path='closet/women' element={<WomenCategory />} />
           <Route path='closet/men' element={<MenCategory />} />
-          <Route path='closet/product' element={<ProductDetail />} />
+          <Route path='closet/item/:id' element={<ProductDetail />} />
           <Route path='closet/:id' element={<SingleCloset />} />
 
           <Route path='faq' element={<FAQ />} />

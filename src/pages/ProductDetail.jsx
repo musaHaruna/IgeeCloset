@@ -7,9 +7,66 @@ import { SingleProduct } from '../assets/images'
 import { RiFlag2Line } from 'react-icons/ri'
 import { singleClosetItem } from '../utils/data'
 import RelatedProducts from '../components/website/RelatedProducts'
-
+import { useFetcSingleItem, useComment } from '../utils/websiteApi'
+import { useParams } from 'react-router-dom'
+import { useState } from 'react'
+import { LuSendHorizonal } from 'react-icons/lu'
+import { toast } from 'react-toastify'
 
 const ProductDetail = () => {
+  const { id } = useParams()
+  const { isLoading, isError, data } = useFetcSingleItem(id)
+  const { userComment, status } = useComment()
+  const [comment, setComment] = useState('')
+
+  // Function to handle input changes
+  const handleInputChange = (event) => {
+    setComment(event.target.value)
+  }
+
+  const item = data?.data.item
+
+  function formatTimeAgo(dateString) {
+    const currentDate = new Date()
+    const commentDate = new Date(dateString)
+
+    const timeDifference = currentDate - commentDate
+    const seconds = Math.floor(timeDifference / 1000)
+    const minutes = Math.floor(seconds / 60)
+    const hours = Math.floor(minutes / 60)
+    const days = Math.floor(hours / 24)
+    const weeks = Math.floor(days / 7)
+    const months = Math.floor(days / 30)
+
+    if (months > 0) {
+      return `${months} ${months === 1 ? 'month' : 'months'} ago`
+    } else if (weeks > 0) {
+      return `${weeks} ${weeks === 1 ? 'week' : 'weeks'} ago`
+    } else if (days > 0) {
+      return `${days} ${days === 1 ? 'day' : 'days'} ago`
+    } else if (hours > 0) {
+      return `${hours} ${hours === 1 ? 'hour' : 'hours'} ago`
+    } else if (minutes > 0) {
+      return `${minutes} ${minutes === 1 ? 'minute' : 'minutes'} ago`
+    } else {
+      return 'Just now'
+    }
+  }
+
+  const handleSumbitComment = (e) => {
+    e.preventDefault()
+
+    userComment({
+      item_id: item.id,
+      msg: comment,
+      date: new Date(),
+    })
+
+    setComment('')
+
+    toast.success('comment successful')
+  }
+
   return (
     <Wrapper>
       <div className='links'>
@@ -43,10 +100,10 @@ const ProductDetail = () => {
             <img className='showcase-img' src={SingleProduct} alt='' />
             <div className='icons'>
               <p className='text-green'>
-                <CiHeart /> <span>214</span>
+                <CiHeart /> <span>item</span>
               </p>
               <p className='text-green'>
-                <TbMessage /> <span>214</span>
+                <TbMessage /> <span>{item?.comments_count}</span>
               </p>
               <p className='text-green'>
                 <RiFlag2Line />
@@ -57,19 +114,19 @@ const ProductDetail = () => {
         <section>
           <div>
             <p className='from'>
-              From <span className='text-green'>Mary Closet</span>{' '}
+              From <span className='text-green'>{item?.closet.name}</span>{' '}
               <img className='profile' src={SingleProduct} alt='' />
             </p>
             <img src='' alt='' />
           </div>
-          <h3 className='heading-1'>America women Blouse vhf 500 grey</h3>
-          <h4 className='price'>₦45,000</h4>
+          <h3 className='heading-1'>{item?.title}</h3>
+          <h4 className='price'>₦ {item?.price}</h4>
           <p className='category'>
-            Category: <span className='text-green'>Women</span>
+            Category: <span className='text-green'>{item?.category.name}</span>
           </p>
           <p className='size'>
-            Size: <span className='text-green'>XL</span>{' '}
-            <span className='text-green'>see Size Chart</span>
+            Size: <span className='text-green'>{item?.size}</span>{' '}
+            {/* <span className='text-green'>see Size Chart</span> */}
           </p>
           <div className='like-count'>
             <div className='peoples-likes'>
@@ -82,12 +139,7 @@ const ProductDetail = () => {
           </div>
           <div className='details'>
             <h5>Details</h5>
-            <p>
-              The vacuum cleaner can be divided into vertical, horizontal and
-              portable according to the structure. The working principle of the
-              vacuum cleaner is to use the electric motor to drive the blades to
-              rotate at high speed,
-            </p>
+            <p>{item?.description}</p>
           </div>
           <div className='btns'>
             <button className='outline'>Make an offer</button>
@@ -106,14 +158,36 @@ const ProductDetail = () => {
             <img className='profile' src={SingleProduct} alt='' />
             <p>Otuekong</p>
           </div>
-          <p className='comment'>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse,
-            animi officiis rerum ea laboriosam aspernatur at repellat facere
-            incidunt temporibus?
-          </p>
-          <div className='reply'>
-            <p>A day ago</p>
-            <p className='text-green'>Reply</p>
+          <div>
+            {item?.comments.map((comment) => (
+              <div key={comment.id} className='comment'>
+                <p>{comment?.msg}</p>
+                <div className='reply'>
+                  <p>{formatTimeAgo(comment?.date)}</p>
+                  <p className='text-green reply-comment'>Reply</p>
+                </div>
+
+                {comment?.replies.length > 0 && (
+                  <div className='replies'>
+                    {comment?.replies.map((reply) => (
+                      <div key={reply.id} className='reply'>
+                        <p>{reply.msg}</p>
+                        <p>Date: {reply.date}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+          <div className='comment-box'>
+            <input
+              type='text'
+              value={comment}
+              onChange={handleInputChange}
+              placeholder='Type your comment...'
+            />
+            <LuSendHorizonal onClick={(e) => handleSumbitComment(e)} />
           </div>
         </section>
       </article>

@@ -4,11 +4,14 @@ import { SingleClosetItem } from '../components/website'
 import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { useFetchAllItems } from '../utils/websiteApi'
+import { RotatingLines } from 'react-loader-spinner'
 
 const Explore = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(1)
   const [products, setProducts] = useState([])
+
+  const trail = true
 
   const { isLoading, isError, data } = useFetchAllItems(currentPage)
   console.log(products)
@@ -71,6 +74,16 @@ const Explore = () => {
           <h2>Trending</h2>
           <p>2000 Products avaliable</p>
         </section>
+        {isLoading && (
+          <div className='loader-spinner'>
+            <RotatingLines
+              type='Oval'
+              style={{ color: '#FFF' }}
+              height={100}
+              width={100}
+            />
+          </div>
+        )}
 
         <section className='closet-cards'>
           {products?.data?.data.map((item, index) => (

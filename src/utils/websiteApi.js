@@ -76,15 +76,31 @@ export const useFetchAllItemsByCategory = (id) => {
 
 export const useFetcSingleItem = (id) => {
   const { isLoading, data, isError } = useQuery({
-    queryKey: [''],
+    queryKey: ['comment'],
     queryFn: async () => {
       const { data } = await customFetch.get(
         `customer/items/get-single-item?item_id=${id}`
       )
-      return data.data.data
+      return data
     },
   })
   return { isLoading, isError, data }
+}
+export const useFetchAllComments = (id) => {
+  const {
+    isLoading: loadingComments,
+    data: comments,
+    isError: errorLoadingComments,
+  } = useQuery({
+    queryKey: [''],
+    queryFn: async () => {
+      const { data } = await customFetch.get(
+        `customer/comments/by-item?item_id=${id}`
+      )
+      return data
+    },
+  })
+  return { loadingComments, errorLoadingComments, comments }
 }
 
 export const useFollowCloset = () => {
@@ -146,6 +162,7 @@ export const useLikeItem = () => {
   })
   return { likeItem, status }
 }
+
 export const useUnLikeItem = (id) => {
   const queryClient = useQueryClient()
   const { mutate: unLikeItem, status } = useMutation({
@@ -170,4 +187,215 @@ export const useUnLikeItem = (id) => {
     },
   })
   return { unLikeItem, status }
+}
+
+export const useComment = (id) => {
+  const queryClient = useQueryClient()
+  const { mutate: userComment, status } = useMutation({
+    mutationFn: ({ item_id, msg, date }) =>
+      customFetch.post(`customer/comments/comment-on-item`, {
+        item_id,
+        msg,
+        date,
+      }),
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ['comment'] })
+      console.log(data.data.data.message)
+      toast.success(data.data.data.message)
+    },
+    onError: (error) => {
+      console.log(error)
+      toast.error('error')
+    },
+  })
+  return { userComment, status }
+}
+export const useReplyComment = () => {
+  const queryClient = useQueryClient()
+  const { mutate: userReplyComment, status } = useMutation({
+    mutationFn: ({ item_id, msg, date }) =>
+      customFetch.post(`customer/comments/reply-comment`, {
+        item_id,
+        msg,
+        date,
+      }),
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ['comment'] })
+      console.log(data.data.data.message)
+      toast.success(data.data.data.message)
+    },
+    onError: (error) => {
+      console.log(error)
+      toast.error('error')
+    },
+  })
+  return { userReplyComment, status }
+}
+
+export const useSubmitForReview = () => {
+  const queryClient = useQueryClient()
+  const { mutate: submitForReview, status } = useMutation({
+    mutationFn: ({
+      images,
+      index_image,
+      title,
+      description,
+      category_id,
+      brand,
+      size,
+      tag_image,
+      price,
+      location,
+      state,
+      delivery_mode,
+      inStock,
+    }) =>
+      customFetch.post(`customer/items/submit`, {
+        images,
+        index_image,
+        title,
+        description,
+        category_id,
+        brand,
+        size,
+        tag_image,
+        price,
+        location,
+        state,
+        delivery_mode,
+        inStock,
+      }),
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: [''] })
+      console.log(data)
+      toast.success('successfull')
+    },
+    onError: (error) => {
+      console.log(error)
+      toast.error('error')
+    },
+  })
+  return { submitForReview, status }
+}
+
+// upload items
+export const useUploadItem1 = () => {
+  const queryClient = useQueryClient()
+  const {
+    data: item1,
+    mutate: uploadItem1,
+    status,
+  } = useMutation({
+    mutationFn: ({ formData }) =>
+      customFetch.post('customer/items/upload-image', formData, {
+        headers: {
+          'Custom-Headers': 'value',
+          'Content-Type': 'multipart/form-data',
+        },
+      }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['user-profile'] })
+      toast.success('Image uploaded successfully')
+    },
+    onError: (error) => {
+      console.log(error)
+    },
+  })
+  return { uploadItem1, status, item1 }
+}
+export const useUploadItem2 = () => {
+  const queryClient = useQueryClient()
+  const {
+    data: item2,
+    mutate: uploadItem2,
+    status,
+  } = useMutation({
+    mutationFn: ({ formData }) =>
+      customFetch.post('customer/items/upload-image', formData, {
+        headers: {
+          'Custom-Headers': 'value',
+          'Content-Type': 'multipart/form-data',
+        },
+      }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['user-profile'] })
+      toast.success('Image uploaded successfully')
+    },
+    onError: (error) => {
+      console.log(error)
+    },
+  })
+  return { uploadItem2, status, item2 }
+}
+export const useUploadItem3 = () => {
+  const queryClient = useQueryClient()
+  const {
+    data: item3,
+    mutate: uploadItem3,
+    status,
+  } = useMutation({
+    mutationFn: ({ formData }) =>
+      customFetch.post('customer/items/upload-image', formData, {
+        headers: {
+          'Custom-Headers': 'value',
+          'Content-Type': 'multipart/form-data',
+        },
+      }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['user-profile'] })
+      toast.success('Image uploaded successfully')
+    },
+    onError: (error) => {
+      console.log(error)
+    },
+  })
+  return { uploadItem3, status, item3 }
+}
+export const useUploadItem4 = () => {
+  const queryClient = useQueryClient()
+  const {
+    data: item4,
+    mutate: uploadItem4,
+    status,
+  } = useMutation({
+    mutationFn: ({ formData }) =>
+      customFetch.post('customer/items/upload-image', formData, {
+        headers: {
+          'Custom-Headers': 'value',
+          'Content-Type': 'multipart/form-data',
+        },
+      }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['user-profile'] })
+      toast.success('Image uploaded successfully')
+    },
+    onError: (error) => {
+      console.log(error)
+    },
+  })
+  return { uploadItem4, status, item4 }
+}
+export const useUploadItem5 = () => {
+  const queryClient = useQueryClient()
+  const {
+    data: item5,
+    mutate: uploadItem5,
+    status,
+  } = useMutation({
+    mutationFn: ({ formData }) =>
+      customFetch.post('customer/items/upload-image', formData, {
+        headers: {
+          'Custom-Headers': 'value',
+          'Content-Type': 'multipart/form-data',
+        },
+      }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['user-profile'] })
+      toast.success('Image uploaded successfully')
+    },
+    onError: (error) => {
+      console.log(error)
+    },
+  })
+  return { uploadItem5, status, item5 }
 }
