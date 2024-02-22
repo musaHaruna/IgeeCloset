@@ -101,17 +101,27 @@ const Wrapper = styled.main`
     cursor: point;
   }
 
-  
-
   .upload-btn-wrapper-img {
     position: absolute;
     top: 4rem;
     left: 2rem;
     overflow: hidden;
     display: inline-block;
-    cursor: point;
+    cursor: pointer;
   }
 
+  .upload-btn-wrapper-img.bg-img {
+    position: absolute;
+    top: 10%;
+    left: 90%;
+    overflow: hidden;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  .upload-btn-wrapper-img.bg-img .btn .camera {
+    color: #fff;
+  }
   .btn {
     color: gray;
     background-color: transparent;

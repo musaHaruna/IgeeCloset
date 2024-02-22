@@ -3,7 +3,7 @@ import { CiHeart, CiShare2 } from 'react-icons/ci'
 import { AiOutlineLike } from 'react-icons/ai'
 import Wrapper from '../../assets/css/SingleClosetItem'
 import { ClosetImg } from '../../assets/images'
-// import { useLikeItem, useUnLikeItem } from '../../utils/websiteApi'
+import { useLikeItem, useUnLikeItem } from '../../utils/websiteApi'
 import { Link } from 'react-router-dom'
 Wrapper
 const SingleClosetItem = ({ item }) => {
@@ -25,7 +25,7 @@ const SingleClosetItem = ({ item }) => {
       <div className='closet-card category'>
         <div className='product-img'>
           <Link to={`/closet/item/${item.id}`}>
-            <img src={item.tag_images ? item.tag_image : ClosetImg} alt='' />
+            <img src={item.index_image ? item.tag_image : ClosetImg} alt='' />
           </Link>
         </div>
         <div className='product-desc'>

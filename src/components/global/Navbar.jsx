@@ -61,7 +61,7 @@ const Navbar = () => {
           <ul>
             <li>
               <NavLink
-                to='explore'
+                to='/explore'
                 style={({ isActive }) => ({
                   color: isActive ? '#3d8d30' : '#17191c',
                 })}
@@ -72,7 +72,7 @@ const Navbar = () => {
 
             <li>
               <NavLink
-                to='closet'
+                to='/closet'
                 style={({ isActive }) => ({
                   color: isActive ? '#3d8d30' : '#17191c',
                 })}

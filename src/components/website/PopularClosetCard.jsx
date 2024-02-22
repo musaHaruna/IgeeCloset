@@ -13,8 +13,8 @@ const PopularClosetCard = ({ item }) => {
 
       <div className='closet-card-info'>
         <div>
-          <h5 className='text-white'>{item.name}</h5>
-          <p className='social text-green'>@{item.customer.username}</p>
+          <h5 className='text-white'>{item?.name}</h5>
+          <p className='social text-green'>@{item?.customer?.username}</p>
           <p className='items text-white'>
             {item.items_count <= 0
               ? '0 items listed'

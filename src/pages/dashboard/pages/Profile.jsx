@@ -7,7 +7,7 @@ import {
   useFetchProfile,
   useUpdateProfile,
   useUpdateProfileImage,
-} from '../../../utils/usersDashBoardApi'
+} from '../../../utils/usersDashboardApi'
 import { toast } from 'react-toastify'
 
 const Profile = () => {
@@ -17,6 +17,7 @@ const Profile = () => {
   }
 
   const [uploadFile, setUploadFile] = useState(null)
+  const [uploadBg, setUploadBg] = useState(null)
   console.log(uploadFile)
 
   const { updateProfileImage } = useUpdateProfileImage()
@@ -24,22 +25,33 @@ const Profile = () => {
   useEffect(() => {
     if (uploadFile) {
       const formData = new FormData()
-
       // Append additional properties
       formData.append('type', 'image')
       formData.append('description', 'Profile picture')
-
       // Append the file
       formData.append('file', uploadFile)
-
       console.log('FormData:', formData)
-
       updateProfileImage({ formData })
     }
   }, [uploadFile])
+  useEffect(() => {
+    if (uploadBg) {
+      const formData = new FormData()
+      // Append additional properties
+      formData.append('type', 'bg_image')
+      formData.append('description', 'Profile picture')
+      // Append the file
+      formData.append('file', uploadBg)
+      console.log('FormData:', formData)
+      updateProfileImage({ formData })
+    }
+  }, [uploadBg])
 
   const handleFileChange = (e) => {
     setUploadFile(e.target.files[0])
+  }
+  const handleFileChange2 = (e) => {
+    setUploadBg(e.target.files[0])
   }
 
   const handleSaveButtonClick = () => {
@@ -66,6 +78,8 @@ const Profile = () => {
       console.log(name, value)
     }
   }
+
+  console.log(formData)
 
   const { mutate } = useUpdateProfile()
 
@@ -97,8 +111,13 @@ const Profile = () => {
     <Wrapper>
       <article className='user-banner'>
         <div className='banner'>
-          <AiOutlineCamera className='upload-pic' />
-          <img src={formData?.image} alt='' />
+          <div class='upload-btn-wrapper-img bg-img'>
+            <button class='btn'>
+              <AiOutlineCamera className='camera' />
+            </button>
+            <input type='file' onChange={handleFileChange2} name='myfile' />
+          </div>
+          <img src={formData?.bg_image} alt='' />
         </div>
         <div className='user-profile-img'>
           <img src={formData?.image} alt='' />

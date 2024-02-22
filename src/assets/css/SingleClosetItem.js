@@ -17,6 +17,11 @@ const Wrapper = styled.div`
     overflow: hidden;
   }
 
+  .product-img img {
+    height: 300px;
+    object-fit: cover;
+  }
+
   .product-desc {
     font-weight: 700;
     font-size: 14px;
