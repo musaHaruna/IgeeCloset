@@ -2,8 +2,11 @@ import { useState } from 'react'
 import links from '../../utils/dashboardLinks'
 import { Link } from 'react-router-dom'
 import { profile } from '../../assets/images/index'
+import { useDispatch, useSelector } from 'react-redux'
 const DashboardLinks = () => {
   const [activeTab, setActiveTab] = useState(0)
+  const { user } = useSelector((state) => state.user)
+  console.log(user)
 
   const handleTabClick = (index) => {
     setActiveTab(index)
@@ -14,10 +17,10 @@ const DashboardLinks = () => {
       <div className='sidebar-links'>
         <div className='profile-container'>
           <div className='profile-img'>
-            <img src={profile} alt='profile-img' />
+            <img src={user?.user.image} alt='profile-img' />
           </div>
           <div>
-            <h2 className='username'>Musa</h2>
+            <h2 className='username'>{user?.user.name.split(' ')[0]}</h2>
             <p className='status text-green '>active</p>
           </div>
         </div>

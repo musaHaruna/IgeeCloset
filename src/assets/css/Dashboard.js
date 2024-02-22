@@ -22,7 +22,7 @@ const Wrapper = styled.article`
     z-index: 2;
   }
   .nav-link {
-    margin: .3rem 0;
+    margin: 0.3rem 0;
     font-size: 12px;
   }
 
@@ -65,8 +65,15 @@ const Wrapper = styled.article`
   }
 
   .profile-img {
-    width: 40px;
+  }
+
+  .profile-img img {
+    display: block;
+    object-fit: cover;
     border-radius: 50%;
+    overflow: hidden;
+    width: 50px;
+    height: 50px;
   }
 
   .profile-container .username {
