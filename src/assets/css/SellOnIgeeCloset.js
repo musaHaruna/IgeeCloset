@@ -5,17 +5,45 @@ const Wrapper = styled.article`
     position: relative;
     overflow: hidden;
     display: inline-block;
-    cursor: point;
-    padding: 3rem 7.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 290px;
+    height: 200px;
     border-radius: 6px;
-    border: 0.4px dashed #000;
+    border-style: dashed;
+    border-width: 0.7px; /* Adjust the thickness of the dashes */
+    border-spacing: 2rem;
     background-color: #f7f7f7;
+    cursor: pointer;
+  }
+
+  .sell-on-igee {
+    width: 50%;
+    margin: 1rem auto;
+    text-align: center;
+  }
+
+  .tags {
+    height: 100px;
+    font-size: 13px;
+  }
+
+  .back-to-home {
+    display: block;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #000000;
+    margin-top: 2rem;
+    margin-bottom: 0;
   }
 
   .btn {
     color: #56ac48;
     background-color: transparent;
-    font-size: 28px;
+    font-size: 40px;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,7 +57,7 @@ const Wrapper = styled.article`
     left: 0;
     top: 0;
     opacity: 0;
-    cursor: point;
+    cursor: pointer;
   }
 
   .upload-flex {
@@ -40,6 +68,10 @@ const Wrapper = styled.article`
   .product-gallery {
     display: flex;
     justify-content: space-between;
+  }
+
+  .upload-icon {
+    cursor: pointer;
   }
 
   .container {
@@ -58,6 +90,7 @@ const Wrapper = styled.article`
     padding: 0.5rem 0;
     border: none;
     border-bottom: 1px solid #56ac48;
+    cursor: pointer;
   }
 
   input,
