@@ -49,6 +49,7 @@ const ForgetPassword = ({ openForgetModal, closeForgetModal }) => {
     forgotPassword(data, {
       onSuccess: () => {
         openOtpModal()
+        alert("hello")
       },
     })
   }

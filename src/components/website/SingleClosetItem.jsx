@@ -24,7 +24,7 @@ const SingleClosetItem = ({ item }) => {
     <Wrapper>
       <div className='closet-card category'>
         <div className='product-img'>
-          <Link to={`/closet/item/${item.id}`}>
+          <Link className='link-a' to={`/closet/item/${item.id}`}>
             <img src={item.index_image ? item.tag_image : ClosetImg} alt='' />
           </Link>
         </div>

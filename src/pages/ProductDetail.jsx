@@ -7,7 +7,11 @@ import { SingleProduct } from '../assets/images'
 import { RiFlag2Line } from 'react-icons/ri'
 import { singleClosetItem } from '../utils/data'
 import RelatedProducts from '../components/website/RelatedProducts'
-import { useFetcSingleItem, useComment } from '../utils/websiteApi'
+import {
+  useFetcSingleItem,
+  useFetchAllItemsByClosetId,
+  useComment,
+} from '../utils/websiteApi'
 import { useParams } from 'react-router-dom'
 import { useState } from 'react'
 import { LuSendHorizonal } from 'react-icons/lu'
@@ -16,7 +20,9 @@ import { toast } from 'react-toastify'
 const ProductDetail = () => {
   const { id } = useParams()
   const { isLoading, isError, data } = useFetcSingleItem(id)
+
   const { userComment, status } = useComment()
+
   const [comment, setComment] = useState('')
 
   // Function to handle input changes
@@ -25,6 +31,12 @@ const ProductDetail = () => {
   }
 
   const item = data?.data.item
+  const productImages = item?.images?.split(',').slice(0, -1)
+  console.log(productImages)
+
+  const { closetItemLoading, closetItem, closetItemError } =
+    useFetchAllItemsByClosetId(data?.data?.item?.closet_id.toString())
+  console.log(closetItem)
 
   function formatTimeAgo(dateString) {
     const currentDate = new Date()
@@ -83,21 +95,17 @@ const ProductDetail = () => {
       <article className='product-container'>
         <section className='product-img'>
           <div>
-            <div>
-              <img src={SingleProduct} alt='' />
-            </div>
-            <div>
-              <img src={SingleProduct} alt='' />
-            </div>
-            <div>
-              <img src={SingleProduct} alt='' />
-            </div>
-            <div>
-              <img src={SingleProduct} alt='' />
-            </div>
+            {productImages?.map((image, index) => (
+              <div key={index}>
+                <img className='vertical-img' src={image} alt='' />
+              </div>
+            ))}
           </div>
           <div className='item-showcase'>
-            <img className='showcase-img' src={SingleProduct} alt='' />
+            <div className='showcase-img'>
+              <img src={item?.index_image} alt='' />
+            </div>
+
             <div className='icons'>
               <p className='text-green'>
                 <CiHeart /> <span>item</span>
@@ -172,7 +180,6 @@ const ProductDetail = () => {
                     {comment?.replies.map((reply) => (
                       <div key={reply.id} className='reply'>
                         <p>{reply.msg}</p>
-                        <p>Date: {reply.date}</p>
                       </div>
                     ))}
                   </div>
@@ -187,7 +194,10 @@ const ProductDetail = () => {
               onChange={handleInputChange}
               placeholder='Type your comment...'
             />
-            <LuSendHorizonal onClick={(e) => handleSumbitComment(e)} />
+            <LuSendHorizonal
+              className='green-btn'
+              onClick={(e) => handleSumbitComment(e)}
+            />
           </div>
         </section>
       </article>
@@ -195,7 +205,7 @@ const ProductDetail = () => {
       <article>
         <h3 className='heading-2'>Other Product from this Closet</h3>
         <section className='related-products'>
-          {singleClosetItem.map((item, index) => (
+          {closetItem?.data?.items?.map((item, index) => (
             <RelatedProducts key={index} item={item} />
           ))}
         </section>

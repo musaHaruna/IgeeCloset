@@ -46,7 +46,7 @@ export const useFetchAllItems = (id) => {
 }
 
 export const useFetchAllItemsByClosetId = (id) => {
-  const { isLoading, data, isError } = useQuery({
+  const { isLoading: closetItemLoading, data: closetItem, isError :closetItemError } = useQuery({
     queryKey: ['closet-id'],
     queryFn: async () => {
       const { data } = await customFetch.get(
@@ -55,7 +55,7 @@ export const useFetchAllItemsByClosetId = (id) => {
       return data
     },
   })
-  return { isLoading, isError, data }
+  return { closetItemLoading, closetItem, closetItemError }
 }
 export const useFetchAllItemsByCategory = (id) => {
   const {

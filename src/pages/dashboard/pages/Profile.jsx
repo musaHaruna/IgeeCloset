@@ -18,7 +18,6 @@ const Profile = () => {
 
   const [uploadFile, setUploadFile] = useState(null)
   const [uploadBg, setUploadBg] = useState(null)
-  console.log(uploadFile)
 
   const { updateProfileImage } = useUpdateProfileImage()
 
@@ -59,12 +58,11 @@ const Profile = () => {
   }
 
   const { isLoading, isError, data } = useFetchProfile()
+  console.log(data)
 
   useEffect(() => {
-    setFormData(data)
+    setFormData(data?.data.user)
   }, [data])
-
-  console.log(data)
 
   const [formData, setFormData] = useState({})
 
@@ -75,11 +73,8 @@ const Profile = () => {
         ...prevData,
         [name]: value,
       }))
-      console.log(name, value)
     }
   }
-
-  console.log(formData)
 
   const { mutate } = useUpdateProfile()
 
@@ -104,7 +99,6 @@ const Profile = () => {
     if (isEditable === false) {
       return
     } else setIsEditable(false)
-    toast.success('Profile successfully edited')
   }
 
   return (

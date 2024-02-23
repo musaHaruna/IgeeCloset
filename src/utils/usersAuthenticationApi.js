@@ -62,7 +62,7 @@ export const useForgotPassword = () => {
     },
     onError: (error) => {
       console.log(error.response.data.message)
-      alert(error.response.data.message)
+      toast.error(error.response.data.message)
     },
   })
   return { data, forgotPassword, isError }

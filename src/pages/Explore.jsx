@@ -86,7 +86,7 @@ const Explore = () => {
         )}
 
         <section className='closet-cards'>
-          {products?.data?.data.map((item, index) => (
+          {products?.data?.data?.map((item, index) => (
             // Adjust this part based on your requirements
             <div className='links' key={index}>
               <SingleClosetItem item={item} />

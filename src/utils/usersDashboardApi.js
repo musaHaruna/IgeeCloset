@@ -6,7 +6,7 @@ export const useFetchProfile = () => {
     queryKey: ['user-profile'],
     queryFn: async () => {
       const { data } = await customFetch.get('customer/profile')
-      return data.data.user
+      return data
     },
   })
   return { isLoading, isError, data }
@@ -14,7 +14,7 @@ export const useFetchProfile = () => {
 
 export const useUpdateProfile = () => {
   const queryClient = useQueryClient()
-  const { mutate, status } = useMutation({
+  const { mutate, status, data } = useMutation({
     mutationFn: ({ username, phoneNumber, address, state, bio }) =>
       customFetch.post('customer/profile/update', {
         name: username,
@@ -23,14 +23,17 @@ export const useUpdateProfile = () => {
         state,
         bio,
       }),
-    onSuccess: () => {
+    onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['user-profile'] })
+      toast.success('Profile updated successfully')
+      console.log(data)
     },
     onError: (error) => {
-      console.log(error)
-      toast.error('Error editing profile')
+      toast.error('An error occured while updating your profile')
+      return error
     },
   })
+
   return { mutate, status }
 }
 

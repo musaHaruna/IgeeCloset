@@ -15,8 +15,10 @@ import {
 const SingleCloset = () => {
   const { id } = useParams()
   const closetId = id
-  const { isLoading, isError, data } = useFetchAllItemsByClosetId(closetId)
-  const closetItems = data?.data.items
+const { closetItemLoading, closetItemError, closetItem } =
+  useFetchAllItemsByClosetId(closetId)
+  const closetItems = closetItem?.data.items
+
 
   const { followCloset, status } = useFollowCloset()
   const { unfollowCloset } = useUnFollowCloset()

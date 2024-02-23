@@ -19,7 +19,26 @@ const Wrapper = styled.div`
 
   .product-img img {
     height: 300px;
+    width: 100%;
     object-fit: cover;
+  }
+
+  .related-img {
+    height: 150px;
+    width: 100%;
+  }
+
+  .product-desc .size {
+    font-size: 12px;
+    margin: 0;
+  }
+  .related-img img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+  .link-a {
+    width: 100%;
   }
 
   .product-desc {

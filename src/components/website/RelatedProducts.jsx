@@ -7,10 +7,12 @@ const RelatedProducts = ({ item }) => {
   return (
     <Wrapper>
       <div className='closet-card'>
-        <div>{item.img}</div>
+        <div className='related-img'>
+          <img src={item.index_image} alt='' />
+        </div>
         <div className='product-desc'>
-          <p>{item.name}</p>
-          <p>{item.price}</p>
+          <h4>{item.title}</h4>
+          <p className='text-green'>NGN {item.price}</p>
           <p className='size'>
             {item.size} | <span className='text-green'> @MaryCloset</span>
           </p>
