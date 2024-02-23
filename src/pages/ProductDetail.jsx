@@ -11,6 +11,7 @@ import {
   useFetcSingleItem,
   useFetchAllItemsByClosetId,
   useComment,
+  useReplyComment,
 } from '../utils/websiteApi'
 import { useParams } from 'react-router-dom'
 import { useState } from 'react'
@@ -22,6 +23,7 @@ const ProductDetail = () => {
   const { isLoading, isError, data } = useFetcSingleItem(id)
 
   const { userComment, status } = useComment()
+  const { userReplyComment } = useReplyComment()
 
   const [comment, setComment] = useState('')
 
@@ -30,13 +32,16 @@ const ProductDetail = () => {
     setComment(event.target.value)
   }
 
+  const [activeReplyId, setActiveReplyId] = useState(null)
+
+  const handleReplyClick = (commentId) => {
+    setActiveReplyId(commentId)
+  }
   const item = data?.data.item
   const productImages = item?.images?.split(',').slice(0, -1)
-  console.log(productImages)
 
   const { closetItemLoading, closetItem, closetItemError } =
     useFetchAllItemsByClosetId(data?.data?.item?.closet_id.toString())
-  console.log(closetItem)
 
   function formatTimeAgo(dateString) {
     const currentDate = new Date()
@@ -65,6 +70,12 @@ const ProductDetail = () => {
     }
   }
 
+  const [replyInput, setReplyInput] = useState('')
+
+  const handleInputChangeReply = (event) => {
+    setReplyInput(event.target.value)
+  }
+
   const handleSumbitComment = (e) => {
     e.preventDefault()
 
@@ -79,6 +90,20 @@ const ProductDetail = () => {
     toast.success('comment successful')
   }
 
+  const handleReplySubmit = (e, id) => {
+    e.preventDefault()
+    // Add logic to handle the submission of the reply
+    userReplyComment({
+      comment_id: id,
+      msg: replyInput,
+      date: new Date(),
+    })
+    console.log(id)
+
+    // Reset the state after submission
+    setActiveReplyId(null)
+    setReplyInput('')
+  }
   return (
     <Wrapper>
       <div className='links'>
@@ -167,21 +192,42 @@ const ProductDetail = () => {
             <p>Otuekong</p>
           </div>
           <div>
-            {item?.comments.map((comment) => (
-              <div key={comment.id} className='comment'>
-                <p>{comment?.msg}</p>
+            {item?.comments?.map((item) => (
+              <div key={item.id} className='comment'>
+                <p>{item?.msg}</p>
                 <div className='reply'>
-                  <p>{formatTimeAgo(comment?.date)}</p>
-                  <p className='text-green reply-comment'>Reply</p>
+                  <p>{formatTimeAgo(item?.date)}</p>
+                  <p
+                    className='text-green reply-comment'
+                    onClick={() => handleReplyClick(item.id)}
+                  >
+                    Reply
+                  </p>
                 </div>
 
-                {comment?.replies.length > 0 && (
+                {item?.replies.length > 0 && (
                   <div className='replies'>
-                    {comment?.replies.map((reply) => (
+                    {item?.replies.map((reply) => (
                       <div key={reply.id} className='reply'>
                         <p>{reply.msg}</p>
                       </div>
                     ))}
+                  </div>
+                )}
+
+                {activeReplyId === item.id && (
+                  <div className='reply-messages'>
+                    {/* Input box for the active reply */}
+                    <input
+                      type='text'
+                      placeholder='Type your reply...'
+                      value={replyInput}
+                      onChange={handleInputChangeReply}
+                    />
+                    {/* Add a button to submit the reply */}
+                    <button onClick={(e, id) => handleReplySubmit(e, item.id)}>
+                      Submit Reply
+                    </button>
                   </div>
                 )}
               </div>

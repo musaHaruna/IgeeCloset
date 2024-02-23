@@ -13,6 +13,32 @@ const Wrapper = styled.main`
     border-bottom: 1px solid #d5d6de;
   }
 
+  .reply-messages {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+  }
+
+  .replies {
+    padding-left: 1rem;
+  }
+
+  .reply-messages input {
+    height: 70px;
+    width: 40%;
+    border: 1px solid #56ac48;
+    padding: 0.2rem;
+  }
+
+  .reply-messages button {
+    font-size: 14px;
+    padding: 0.5rem;
+    width: 20%;
+    color: #fff;
+    background-color: #56ac48;
+  }
+
   .reply-comment {
     cursor: pointer;
   }

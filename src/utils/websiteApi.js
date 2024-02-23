@@ -46,7 +46,11 @@ export const useFetchAllItems = (id) => {
 }
 
 export const useFetchAllItemsByClosetId = (id) => {
-  const { isLoading: closetItemLoading, data: closetItem, isError :closetItemError } = useQuery({
+  const {
+    isLoading: closetItemLoading,
+    data: closetItem,
+    isError: closetItemError,
+  } = useQuery({
     queryKey: ['closet-id'],
     queryFn: async () => {
       const { data } = await customFetch.get(
@@ -212,24 +216,24 @@ export const useComment = (id) => {
 }
 export const useReplyComment = () => {
   const queryClient = useQueryClient()
-  const { mutate: userReplyComment, status } = useMutation({
-    mutationFn: ({ item_id, msg, date }) =>
+  const { mutate: userReplyComment } = useMutation({
+    mutationFn: ({ comment_id, msg, date }) =>
       customFetch.post(`customer/comments/reply-comment`, {
-        item_id,
+        comment_id,
         msg,
         date,
       }),
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['comment'] })
       console.log(data.data.data.message)
-      toast.success(data.data.data.message)
+      toast.success('You have successfully replied this comment, Thank you!')
     },
     onError: (error) => {
       console.log(error)
       toast.error('error')
     },
   })
-  return { userReplyComment, status }
+  return { userReplyComment }
 }
 
 export const useSubmitForReview = () => {
