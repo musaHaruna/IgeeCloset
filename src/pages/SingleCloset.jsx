@@ -5,7 +5,8 @@ import { CiLocationOn, CiSearch } from 'react-icons/ci'
 import { singleClosetItem } from '../utils/data'
 import { SingleClosetItem } from '../components/website'
 import { Link, useParams } from 'react-router-dom'
-import { toast } from 'react-toastify'
+import { RotatingLines } from 'react-loader-spinner'
+
 import {
   useFetchAllItemsByClosetId,
   useFollowCloset,
@@ -15,10 +16,9 @@ import {
 const SingleCloset = () => {
   const { id } = useParams()
   const closetId = id
-const { closetItemLoading, closetItemError, closetItem } =
-  useFetchAllItemsByClosetId(closetId)
+  const { closetItemLoading, closetItemError, closetItem } =
+    useFetchAllItemsByClosetId(closetId)
   const closetItems = closetItem?.data.items
-
 
   const { followCloset, status } = useFollowCloset()
   const { unfollowCloset } = useUnFollowCloset()
@@ -136,6 +136,16 @@ const { closetItemLoading, closetItemError, closetItem } =
           </select>
         </div>
       </section>
+      {closetItemLoading && (
+        <div className='loader-spinner'>
+          <RotatingLines
+            type='Oval'
+            style={{ color: '#FFF' }}
+            height={100}
+            width={100}
+          />
+        </div>
+      )}
       <section className='closet-cards'>
         {closetItems?.map((item, index) => (
           <div className='link'>

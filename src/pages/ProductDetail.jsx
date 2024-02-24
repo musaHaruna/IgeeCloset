@@ -5,7 +5,6 @@ import { CiHeart } from 'react-icons/ci'
 import { TbMessage } from 'react-icons/tb'
 import { SingleProduct } from '../assets/images'
 import { RiFlag2Line } from 'react-icons/ri'
-import { singleClosetItem } from '../utils/data'
 import RelatedProducts from '../components/website/RelatedProducts'
 import {
   useFetcSingleItem,
@@ -17,8 +16,30 @@ import { useParams } from 'react-router-dom'
 import { useState } from 'react'
 import { LuSendHorizonal } from 'react-icons/lu'
 import { toast } from 'react-toastify'
+import MakeAnOfferModal from '../components/modals/MakeAnOfferModal'
+import BuyNowModal from '../components/modals/BuyNowModal'
 
 const ProductDetail = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const openModal = () => {
+    setIsModalOpen(true)
+  }
+
+  const closeModal = () => {
+    setIsModalOpen(false)
+  }
+
+  const [isBuyNowModalOpen, setIsBuyNowModalOpen] = useState(false)
+
+  const openBuyNowModal = () => {
+    setIsBuyNowModalOpen(true)
+  }
+
+  const closeBuyNowModal = () => {
+    setIsBuyNowModalOpen(false)
+  }
+
   const { id } = useParams()
   const { isLoading, isError, data } = useFetcSingleItem(id)
 
@@ -175,8 +196,12 @@ const ProductDetail = () => {
             <p>{item?.description}</p>
           </div>
           <div className='btns'>
-            <button className='outline'>Make an offer</button>
-            <button className='solid'>Buy Now</button>
+            <button onClick={openModal} className='outline'>
+              Make an offer
+            </button>
+            <button className='solid' onClick={openBuyNowModal}>
+              Buy Now
+            </button>
           </div>
           <button className='grey'>
             Add to Favourite <CiHeart />
@@ -256,6 +281,16 @@ const ProductDetail = () => {
           ))}
         </section>
       </article>
+      <MakeAnOfferModal
+        isOpen={isModalOpen}
+        closeModal={closeModal}
+        productImg={item?.index_image}
+      />
+      <BuyNowModal
+        isOpen={isBuyNowModalOpen}
+        closeModal={closeBuyNowModal}
+        productImg={item?.index_image}
+      />
     </Wrapper>
   )
 }

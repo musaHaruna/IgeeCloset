@@ -1,6 +1,6 @@
 import { IoCloseOutline } from 'react-icons/io5'
 
-const AddressModal = ({ isOpen, closeModal, modalContent }) => {
+const AddressModal = ({ isOpen, closeModal }) => {
   const modalOverlayStyle = {
     position: 'fixed',
     top: 0,
