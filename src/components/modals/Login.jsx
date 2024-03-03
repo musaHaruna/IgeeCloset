@@ -10,6 +10,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { useUserLogin } from '../../utils/usersAuthenticationApi'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import {
   closeLoginModal,
   loginUser,
@@ -17,6 +18,7 @@ import {
 } from '../../features/user/userSlice'
 import { ForgetPassword } from './index'
 import { RotatingLines } from 'react-loader-spinner'
+import { Navigate } from 'react-router-dom'
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -35,7 +37,6 @@ const Login = () => {
     dispatch(closeLoginModal())
     document.body.style.overflowY = 'scroll'
   }
-
   const [openForgetPassword, setOpenForgetPassword] = useState(false)
 
   const handleOpenForgetPassword = () => {
