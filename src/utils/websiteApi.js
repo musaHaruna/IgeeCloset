@@ -272,7 +272,7 @@ export const useSubmitForReview = () => {
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: [''] })
       console.log(data)
-      toast.success('successfull')
+      toast.success('Your product is been submited for review, Thank you!')
     },
     onError: (error) => {
       console.log(error)

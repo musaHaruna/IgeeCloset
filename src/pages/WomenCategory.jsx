@@ -14,8 +14,9 @@ import {
 const WomenCategory = () => {
   const { isLoading, isError, data } = useFetchAllCloset()
 
-  const { categoryLoading, categoryError, items } =
-    useFetchAllItemsByCategory(1)
+  const { categoryLoading, categoryError, items } = useFetchAllItemsByCategory(
+    parseInt(1)
+  )
   const closets = data?.data.closets
   const categoryItems = items?.data.items
 

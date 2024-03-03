@@ -10,8 +10,13 @@ import { closeLoginModal } from '../../features/user/userSlice'
 import ForgetWrapper from './wrappers/ForgetWrapper'
 import { ForgetPword } from '../../assets/images'
 import OTP from './OTP'
+import { toast } from 'react-toastify'
 
-const ForgetPassword = ({ openForgetModal, closeForgetModal }) => {
+const ForgetPassword = ({
+  openForgetModal,
+  closeForgetModal,
+  openForgetPasswordModal,
+}) => {
   const schema = yup.object().shape({
     email: yup
       .string()
@@ -34,6 +39,9 @@ const ForgetPassword = ({ openForgetModal, closeForgetModal }) => {
   const openOtpModal = () => {
     setOtp(true)
   }
+  const closeOtpModal = () => {
+    setOtp(false)
+  }
 
   const {
     register,
@@ -43,13 +51,13 @@ const ForgetPassword = ({ openForgetModal, closeForgetModal }) => {
     resolver: yupResolver(schema),
   })
 
-  const { forgotPassword, isError } = useForgotPassword()
+  const { forgotPassword, status } = useForgotPassword()
 
   const onSubmit = (data) => {
     forgotPassword(data, {
       onSuccess: () => {
         openOtpModal()
-        alert("hello")
+        toast.success('Email sent sucessfully')
       },
     })
   }
@@ -81,8 +89,12 @@ const ForgetPassword = ({ openForgetModal, closeForgetModal }) => {
             </label>
           </div>
 
-          <button className='btn signin forget' type='submit'>
-            Submit
+          <button
+            className='btn signin forget'
+            type='submit'
+            disabled={status === 'pending' ? true : false}
+          >
+            {status === 'pending' ? 'Loading...' : 'Submit'}
           </button>
         </form>
         {otp && (
@@ -90,6 +102,8 @@ const ForgetPassword = ({ openForgetModal, closeForgetModal }) => {
             openModal={otp}
             closeModal={handleCloseModal}
             closeForgetModal={closeForgetModal}
+            openForgetPasswordModal={openForgetPasswordModal}
+            closeOtp={closeOtpModal}
           />
         )}
       </Wrapper>

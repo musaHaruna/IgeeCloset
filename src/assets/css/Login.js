@@ -207,13 +207,25 @@ const Wrapper = styled.article`
 
   .otp-box input {
     padding: 0.5rem;
-  text-align: center;
+    text-align: center;
   }
 
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+  }
+
+  .resend-otp {
+    display: block;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    justify-content: center;
+    background-color: transparent;
+    border: none;
+    margin: 1rem auto;
+    color: #6a6a6a;
   }
 `
 

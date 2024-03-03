@@ -10,6 +10,7 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { useRegisterUser } from '../../utils/usersAuthenticationApi'
+import { RotatingLines } from 'react-loader-spinner'
 
 import SignUpWrapper from './wrappers/SignUpWrapper'
 
@@ -40,11 +41,13 @@ const SignUp = () => {
     resolver: yupResolver(schema),
   })
 
-  const { registerUser } = useRegisterUser()
+  const { registerUser, status } = useRegisterUser()
 
   const onSubmit = (data) => {
     registerUser(data, {
-      onSuccess: () => {},
+      onSuccess: () => {
+        handleOpenLogin()
+      },
     })
   }
 
@@ -99,8 +102,12 @@ const SignUp = () => {
             </label>
           </div>
 
-          <button className='btn signin' type='submit'>
-            Sign Up
+          <button
+            className='btn signin'
+            type='submit'
+            disabled={status === 'pending' ? true : false}
+          >
+            {status === 'pending' ? 'Loading...' : 'Sign in'}
           </button>
         </form>
         <p className='login-already'>

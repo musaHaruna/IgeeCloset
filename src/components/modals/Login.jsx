@@ -10,17 +10,27 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { useUserLogin } from '../../utils/usersAuthenticationApi'
 import { useDispatch, useSelector } from 'react-redux'
-import { closeLoginModal, loginUser } from '../../features/user/userSlice'
+import {
+  closeLoginModal,
+  loginUser,
+  openSignUpModal,
+} from '../../features/user/userSlice'
 import { ForgetPassword } from './index'
+import { RotatingLines } from 'react-loader-spinner'
 
 const Login = () => {
+  const dispatch = useDispatch()
+  const handleOpenModal = () => {
+    dispatch(closeLoginModal())
+    dispatch(openSignUpModal())
+    document.body.style.overflow = 'hidden'
+  }
+
   const schema = yup.object().shape({
     username: yup.string().required('Username is required'),
     password: yup.string().required('Password is required'),
   })
 
-  const user = useSelector((state) => state.user)
-  const dispatch = useDispatch()
   const handleCloseModal = () => {
     dispatch(closeLoginModal())
     document.body.style.overflowY = 'scroll'
@@ -30,6 +40,7 @@ const Login = () => {
 
   const handleOpenForgetPassword = () => {
     setOpenForgetPassword(true)
+    console.log('Hello password')
   }
 
   const handleCloseForgetPassword = () => {
@@ -98,7 +109,7 @@ const Login = () => {
             type='submit'
             disabled={status === 'pending' ? true : false}
           >
-            Sign In
+            {status === 'pending' ? 'Loading...' : 'Sign in'}
           </button>
           <p onClick={handleOpenForgetPassword} className='forget-pword'>
             Forget <span className='text-green'>Password?</span>
@@ -113,11 +124,14 @@ const Login = () => {
           <BsFacebook className='social-icon' />
           Sign up with Facebook
         </button>
-        <p className='forget-pword text-green'>Sign Up with Email</p>
+        <p className='forget-pword text-green' onClick={handleOpenModal}>
+          Sign Up with Email
+        </p>
       </Wrapper>
       {openForgetPassword && (
         <ForgetPassword
           openForgetModal={openForgetPassword}
+          openForgetPasswordModal={handleOpenForgetPassword}
           closeForgetModal={handleCloseForgetPassword}
         />
       )}

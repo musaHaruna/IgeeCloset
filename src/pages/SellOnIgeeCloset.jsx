@@ -636,20 +636,6 @@ const SellOnIgeeCloset = () => {
               <label className='switch'>
                 <input
                   type='checkbox'
-                  checked={paidShipping === null ? '1' : paidShipping}
-                  onChange={handlePaidShippingToggle}
-                />
-                <span class='slider round'></span>
-              </label>
-              <p>Buyer pays</p>
-              <span>
-                <IoAlertCircleOutline />
-              </span>
-            </div>
-            <div className='toggler-btn'>
-              <label className='switch'>
-                <input
-                  type='checkbox'
                   checked={freeShipping === null ? '2' : freeShipping}
                   onChange={handleFreeShippingToggle}
                 />

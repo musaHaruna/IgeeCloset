@@ -17,7 +17,6 @@ const Navbar = () => {
   const { isSignUpModalOpen, isLoginModalOpen, user } = useSelector(
     (state) => state.user
   )
-  
 
   const [isOpen, setIsOpen] = useState(false)
 
@@ -32,11 +31,8 @@ const Navbar = () => {
   const username = user?.user.name.charAt(0).toUpperCase()
 
   const handleOpenModal = () => {
-    dispatch(openSignUpModal())
-    document.body.style.overflow = 'hidden'
-  }
-  const handleOpenMLoginodal = () => {
     dispatch(openLoginModal())
+    document.body.style.overflow = 'hidden'
   }
 
   const handleLogout = () => {

@@ -413,6 +413,14 @@ const Wrapper = styled.article`
     background-color: var(--clr-white);
     color: var(--clr-green);
   }
+
+  .faq-padding {
+    padding: 1rem 4rem;
+  }
+
+  .join-bg.faq {
+    margin: 2rem 0;
+  }
 `
 
 export default Wrapper

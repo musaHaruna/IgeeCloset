@@ -11,7 +11,7 @@ export const useRegisterUser = () => {
   const {
     data,
     mutate: registerUser,
-    isLoading,
+    status,
   } = useMutation({
     mutationFn: ({ username, email, name, phone, password }) =>
       customFetch.post(
@@ -36,14 +36,14 @@ export const useRegisterUser = () => {
       toast.error(error.response.data.message)
     },
   })
-  return { data, registerUser, isLoading }
+  return { data, registerUser, status }
 }
 export const useForgotPassword = () => {
   const queryClient = useQueryClient()
   const {
     data,
     mutate: forgotPassword,
-    isError,
+    status,
   } = useMutation({
     mutationFn: ({ email }) =>
       customFetch.post(
@@ -58,14 +58,13 @@ export const useForgotPassword = () => {
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['user'] })
       console.log(data)
-      alert(data)
     },
     onError: (error) => {
       console.log(error.response.data.message)
       toast.error(error.response.data.message)
     },
   })
-  return { data, forgotPassword, isError }
+  return { data, forgotPassword, status }
 }
 export const useResetPassword = () => {
   const queryClient = useQueryClient()
@@ -87,11 +86,11 @@ export const useResetPassword = () => {
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['user'] })
       console.log(data)
-      alert(data.data.message)
+      toast.success(data.data.message)
     },
     onError: (error) => {
       console.log(error.response.data.message)
-      alert(error.response.data.message)
+      toast.error(error.response.data.message)
     },
   })
   return { data, resetPassword, isError }
@@ -120,11 +119,12 @@ export const useOtpCode = () => {
       ),
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['user'] })
+      toast.success(data.data.message)
       addUserToLocalStorage(data.data.data)
     },
     onError: (error) => {
-      console.log(error.response.data)
-      alert(error.response.data.message)
+      console.log(error)
+      toast.error(error.response.data.message)
       return
     },
   })
