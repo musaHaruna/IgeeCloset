@@ -5,6 +5,7 @@ const Wrapper = styled.nav`
     display: flex;
     align-items: start;
     justify-content: space-between;
+    padding: 3rem 0;
   }
   .footer-links ul h3 {
     color: var(--clr-black);

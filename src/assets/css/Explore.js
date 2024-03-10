@@ -40,11 +40,9 @@ const Wrapper = styled.main`
   }
 
   .category-card h3 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     position: absolute;
-
+    top: 50%;
+    left: 50%;
     font-size: 34px;
     color: #ffff;
     transform: translate(-50%, -50%);

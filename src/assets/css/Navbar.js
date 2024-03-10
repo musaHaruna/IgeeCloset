@@ -79,6 +79,14 @@ const Wrapper = styled.nav`
   .options a {
     color: #1e1e1e;
   }
+
+  .active-link {
+    color: #56ac48;
+  }
+
+  .inactive {
+    color: #17191c;
+  }
 `
 
 export default Wrapper

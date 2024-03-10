@@ -183,6 +183,7 @@ const Wrapper = styled.article`
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
   }
 
   .explore .text-green {
@@ -256,8 +257,17 @@ const Wrapper = styled.article`
     line-height: 1.3;
   }
 
+  .cta-green-outline-flat.bg-white {
+    background-color: #fff;
+    border: #fff;
+    padding: 0.6rem 4rem;
+  }
   .social.text-green {
     font-size: 14px;
+  }
+
+  .cta-green-shadow.buy {
+    padding: 0.6rem 4rem;
   }
 
   .items.text-white {
@@ -338,6 +348,15 @@ const Wrapper = styled.article`
     border-bottom: 1px solid #a3a3a3;
     background: #fff;
     color: #1e1e1e;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .faq-icon {
+    color: #3d8d30;
+    font-size: 40px;
+    padding: 0.4rem;
   }
 
   .faq-p {

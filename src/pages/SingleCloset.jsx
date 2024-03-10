@@ -16,33 +16,57 @@ import {
 const SingleCloset = () => {
   const { id } = useParams()
   const closetId = id
+
+  console.log("CLoset id " + closetId)
   const { closetItemLoading, closetItemError, closetItem } =
     useFetchAllItemsByClosetId(closetId)
   const closetItems = closetItem?.data.items
 
-  const { followCloset, status } = useFollowCloset()
-  const { unfollowCloset } = useUnFollowCloset()
+  const { followCloset, status, followData } = useFollowCloset()
+  const { unfollowCloset, unfollowData } = useUnFollowCloset()
   const [isFollowing, setIsFollowing] = useState(false)
 
   const handleFollowAndUnfollow = () => {
-    if (isFollowing) {
-      unfollowCloset({ id: 1 })
-    } else {
-      followCloset({ id: 1 })
-    }
-    setIsFollowing(!isFollowing) // Toggle the follow state
-  }
-  const [selectedValue, setSelectedValue] = useState('')
+    console.log(unfollowData)
+    unfollowCloset({ id: parseInt(closetId) })
 
-  const options = [
+    // Toggle the follow state
+  }
+  const [selectedAvailability, setSelectedAvailability] = useState('')
+  const [selectedPrize, setSelectedPrize] = useState('')
+  const [selectedSize, setSelectedSize] = useState('')
+
+  const availabilityOptions = [
     { value: '', label: 'Availability' },
     { value: 'option1', label: 'Option 1' },
     { value: 'option2', label: 'Option 2' },
     { value: 'option3', label: 'Option 3' },
   ]
 
-  const handleSelectChange = (event) => {
-    setSelectedValue(event.target.value)
+  const prizeOptions = [
+    { value: '', label: 'Prize' },
+    { value: 'prize1', label: 'Prize 1' },
+    { value: 'prize2', label: 'Prize 2' },
+    { value: 'prize3', label: 'Prize 3' },
+  ]
+
+  const sizeOptions = [
+    { value: '', label: 'Size' },
+    { value: 'size1', label: 'Size 1' },
+    { value: 'size2', label: 'Size 2' },
+    { value: 'size3', label: 'Size 3' },
+  ]
+
+  const handleAvailabilityChange = (event) => {
+    setSelectedAvailability(event.target.value)
+  }
+
+  const handlePrizeChange = (event) => {
+    setSelectedPrize(event.target.value)
+  }
+
+  const handleSizeChange = (event) => {
+    setSelectedSize(event.target.value)
   }
   return (
     <Wrapper>
@@ -99,10 +123,10 @@ const SingleCloset = () => {
         <div>
           <select
             id='selectBox'
-            value={selectedValue}
-            onChange={handleSelectChange}
+            value={selectedAvailability}
+            onChange={handleAvailabilityChange}
           >
-            {options.map((option) => (
+            {availabilityOptions.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
               </option>
@@ -112,10 +136,10 @@ const SingleCloset = () => {
         <div>
           <select
             id='selectBox'
-            value={selectedValue}
-            onChange={handleSelectChange}
+            value={selectedSize}
+            onChange={handleSizeChange}
           >
-            {options.map((option) => (
+            {sizeOptions.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
               </option>
@@ -125,10 +149,10 @@ const SingleCloset = () => {
         <div>
           <select
             id='selectBox'
-            value={selectedValue}
-            onChange={handleSelectChange}
+            value={selectedPrize}
+            onChange={handlePrizeChange}
           >
-            {options.map((option) => (
+            {prizeOptions.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
               </option>

@@ -1,5 +1,4 @@
 import React from 'react'
-import { NavLink, Link } from 'react-router-dom'
 import Wrapper from '../../assets/css/Navbar'
 import { Logo } from './index'
 import { useDispatch, useSelector } from 'react-redux'
@@ -8,11 +7,18 @@ import {
   openLoginModal,
   logoutUser,
 } from '../../features/user/userSlice'
+import { HashLink } from 'react-router-hash-link'
 import { Login, SignUp } from '../modals'
 import { BsSearch } from 'react-icons/bs'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
+  const [activeSection, setActiveSection] = useState('')
+
+  const handleSetActive = (section) => {
+    setActiveSection(section)
+  }
   const dispatch = useDispatch()
   const { isSignUpModalOpen, isLoginModalOpen, user } = useSelector(
     (state) => state.user
@@ -57,35 +63,37 @@ const Navbar = () => {
           </div>
           <ul>
             <li>
-              <NavLink
+              <HashLink
                 to='/explore'
-                style={({ isActive }) => ({
-                  color: isActive ? '#3d8d30' : '#17191c',
-                })}
+                className={
+                  activeSection === 'explore' ? 'active-link' : 'inactive'
+                }
+                onClick={() => handleSetActive('explore')}
               >
                 Explore
-              </NavLink>
+              </HashLink>
             </li>
 
             <li>
-              <NavLink
+              <HashLink
                 to='/closet'
-                style={({ isActive }) => ({
-                  color: isActive ? '#3d8d30' : '#17191c',
-                })}
+                className={
+                  activeSection === 'closet' ? 'active-link' : 'inactive'
+                }
+                onClick={() => handleSetActive('closet')}
               >
                 Closet
-              </NavLink>
+              </HashLink>
             </li>
             <li>
-              <NavLink
-                to='faq'
-                style={({ isActive }) => ({
-                  color: isActive ? '#3d8d30' : '#17191c',
-                })}
+              <HashLink
+                to='/#faq'
+                smooth
+                className={activeSection === 'faq' ? 'active-link' : 'inactive'}
+                onClick={() => handleSetActive('faq')}
               >
                 FAQ
-              </NavLink>
+              </HashLink>
             </li>
             {user ? (
               <h2 onClick={toggleDropdown} className='username'>

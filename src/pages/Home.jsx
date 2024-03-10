@@ -5,8 +5,10 @@ import { AdLady, HeroImg1, Story, JoinUs } from '../assets/images'
 import { howItWorks, closetCard, faqData } from '../utils/data'
 import { ClosetCard, GetStartedCard } from '../components/website'
 import { PiArrowUpRight } from 'react-icons/pi'
-import { useFetchAllCloset } from  "../utils/websiteApi"
+import { useFetchAllCloset } from '../utils/websiteApi'
 import { RotatingLines } from 'react-loader-spinner'
+import { FiArrowDownRight } from 'react-icons/fi'
+import FAQ from './FAQ'
 
 const Home = () => {
   const [activeIndex, setActiveIndex] = useState(null)
@@ -31,7 +33,9 @@ const Home = () => {
             what you really need and love.
           </p>
           <div className='cta-btns'>
-            <Link className='cta-green-shadow'>Buy</Link>
+            <Link className='cta-green-shadow' to={'/explore'}>
+              Buy
+            </Link>
             <Link
               className='cta-green-outline-flat'
               to={'/sell-on-igee-closet'}
@@ -86,9 +90,9 @@ const Home = () => {
           <section className='container explore '>
             <h2 className='heading'>
               Explore Our Closets{' '}
-              <span className='arrow'>
+              <Link to={'/explore'} className='arrow'>
                 <PiArrowUpRight />
-              </span>
+              </Link>
             </h2>
             <p className='text-green'>
               Find unique items that fit your current style
@@ -139,25 +143,8 @@ const Home = () => {
             </div>
           </div>
         </section>
-
-        <section className='container'>
-          <section className='faq-bg'>
-            <h2 className='heading'>
-              F<span className='text-green'>A</span>Q
-            </h2>
-            {faqData.map((item, index) => (
-              <div
-                key={index}
-                className='faq-item'
-                onClick={() => toggleItem(index)}
-              >
-                <h3 className='faq-heading'>{item.question}</h3>
-                {activeIndex === index && (
-                  <p className='faq-p'>{item.answer}</p>
-                )}
-              </div>
-            ))}
-          </section>
+        <section id='faq'>
+          <FAQ />
         </section>
 
         <section className='join-bg'>
@@ -174,8 +161,15 @@ const Home = () => {
                     Join the movement to slow down fast fashion.
                   </h2>
                   <div className='cta-btn'>
-                    <button className='buy'>Buy</button>
-                    <button className='sell'>Sell</button>
+                    <Link className='cta-green-shadow buy' to={'/explore'}>
+                      Buy
+                    </Link>
+                    <Link
+                      className='cta-green-outline-flat bg-white'
+                      to={'/sell-on-igee-closet'}
+                    >
+                      Sell
+                    </Link>
                   </div>
                 </div>
               </div>

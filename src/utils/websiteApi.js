@@ -109,7 +109,11 @@ export const useFetchAllComments = (id) => {
 
 export const useFollowCloset = () => {
   const queryClient = useQueryClient()
-  const { mutate: followCloset, status } = useMutation({
+  const {
+    mutate: followCloset,
+    status,
+    data: followData,
+  } = useMutation({
     mutationFn: ({ id }) =>
       customFetch.post(
         `customer/follow?customer_id=${id}`,
@@ -118,7 +122,7 @@ export const useFollowCloset = () => {
       ),
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['follow'] })
-      console.log(data.data.data.message)
+      console.log(data)
       toast.success(data.data.data.message)
     },
     onError: (error) => {
@@ -126,11 +130,15 @@ export const useFollowCloset = () => {
       toast.error('error')
     },
   })
-  return { followCloset, status }
+  return { followCloset, status, followData }
 }
 export const useUnFollowCloset = () => {
   const queryClient = useQueryClient()
-  const { mutate: unfollowCloset, status } = useMutation({
+  const {
+    mutate: unfollowCloset,
+    status,
+    data: unfollowData,
+  } = useMutation({
     mutationFn: ({ id }) =>
       customFetch.post(
         `customer/unfollow?customer_id=${id}`,
@@ -139,7 +147,7 @@ export const useUnFollowCloset = () => {
       ),
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['unfollow'] })
-      console.log(data.data.data.message)
+      console.log(data)
       toast.success(data.data.data.message)
     },
     onError: (error) => {
@@ -147,7 +155,7 @@ export const useUnFollowCloset = () => {
       toast.error('error')
     },
   })
-  return { unfollowCloset, status }
+  return { unfollowCloset, status, unfollowData }
 }
 export const useLikeItem = () => {
   const queryClient = useQueryClient()
@@ -155,7 +163,7 @@ export const useLikeItem = () => {
     mutationFn: ({ id }) =>
       customFetch.post(`customer/like?item_id=${id}`, {}, { params: { id } }),
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: ['likw'] })
+      queryClient.invalidateQueries({ queryKey: ['like'] })
       console.log(data.data.data.message)
       toast.success(data.data.data.message)
     },

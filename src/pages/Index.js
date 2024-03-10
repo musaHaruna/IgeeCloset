@@ -10,6 +10,7 @@ import ProtectedRoute from './ProtectedRoute'
 import ProductDetail from './ProductDetail'
 import SellOnIgeeCloset from './SellOnIgeeCloset'
 import MenCategory from './MenCategory'
+import ProtectedRouteSellOnIgee from './ProtectedRouteSellOnIgee'
 
 export {
   Landing,
@@ -24,4 +25,5 @@ export {
   ProductDetail,
   SellOnIgeeCloset,
   MenCategory,
+  ProtectedRouteSellOnIgee,
 }

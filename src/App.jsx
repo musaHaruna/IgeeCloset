@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { HashRouter , Routes, Route } from 'react-router-dom'
 import {
   Error,
   Explore,
@@ -7,6 +7,7 @@ import {
   FAQ,
   Home,
   ProtectedRoute,
+  ProtectedRouteSellOnIgee,
   SingleCloset,
   WomenCategory,
   MenCategory,
@@ -28,7 +29,7 @@ import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path='/' element={<Landing />}>
           <Route index element={<Home />} />
@@ -38,15 +39,14 @@ function App() {
           <Route path='closet/men' element={<MenCategory />} />
           <Route path='closet/item/:id' element={<ProductDetail />} />
           <Route path='closet/:id' element={<SingleCloset />} />
-
-          <Route path='faq' element={<FAQ />} />
+          {/* <Route path='faq' element={<FAQ />} /> */}
           <Route path='*' element={<Error />} />
           <Route
             path='sell-on-igee-closet'
             element={
-              <ProtectedRoute>
+              <ProtectedRouteSellOnIgee>
                 <SellOnIgeeCloset />
-              </ProtectedRoute>
+              </ProtectedRouteSellOnIgee>
             }
           ></Route>
         </Route>
@@ -68,7 +68,7 @@ function App() {
         </Route>
       </Routes>
       <ToastContainer position='top-center' />
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 
